@@ -1,0 +1,34 @@
+﻿/* Mobile & tablet */
+@media (max-width: 1023px) {
+    :root {
+        --navbar-height: 0px;
+        --header-height: 68px;
+    }
+
+    .hide-on-mobile-tablet {
+        display: none;
+    }
+
+    .row {
+        margin: 0;
+    }
+}
+
+/* Tablet */
+@media (min-width:740px) and (max-width: 1023px) {
+    .hide-on-tablet {
+        display: none;
+    }
+}
+
+/* Mobile */
+@media (max-width:739px) {
+    .hide-on-mobile {
+        display: none;
+    }
+
+    .product-section-label {
+        font-size: 20px;
+        line-height: 20px;
+    }
+}

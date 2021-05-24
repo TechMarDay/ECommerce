@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewData["Title"] - ECommerce</title>
+    <title>G chill</title>
     <link rel="stylesheet" href="./assets/css/grid.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
     <link href="./assets/fonts/fontawesome-free-5.15.3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -165,24 +166,111 @@
 
         <div class="slider row">
             <div class="c-12">
-                <img class="slider-img" src="./assets//img/slider1.webp" alt="">
+                <img class="slider-img" src="./assets/img/slider1.webp" alt="">
             </div>
         </div>
-    </div>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - ECommerce - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <div class="app__container">
+
+            @RenderBody();
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+        <footer class="footer grid">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="col l-3 m-4 c-6 company_infomation">
+                            <h3 class="footer-header">THÔNG TIN CÔNG TY</h3>
+                            <ul class="footer-list">
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Tìm kiếm</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Giới thiệu</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Chính sách đổi trả</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Chính sách bảo mật</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Điều khoản dịch vụ</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col l-3 m-4 c-6 company_infomation">
+                            <h3 class="footer-header">HỖ TRỢ KHÁCH HÀNG</h3>
+                            <ul class="footer-list">
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Tìm kiếm</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Giới thiệu</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Chính sách đổi trả</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Chính sách bảo mật</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Điều khoản dịch vụ</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col l-3 m-4 c-6 company_infomation">
+                            <h3 class="footer-header">DỊCH VỤ KHÁCH HÀNG</h3>
+                            <ul class="footer-list">
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Tìm kiếm</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Giới thiệu</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Chính sách đổi trả</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Chính sách bảo mật</a>
+                                </li>
+                                <li class="footer-item">
+                                    <a href="" class="footer-item__link">Điều khoản dịch vụ</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col l-3 m-4 c-6 company_infomation">
+                            <h3 class="footer-header">KẾT NỐI VỚI CHÚNG TÔI</h3>
+                            <span class="address">Địa chỉ: Quận 12, TP Hồ Chí Minh</span><br>
+                            <span class="mobile"> Điện thoại: 0388653287 </span>
+                            <ul class="footer-social">
+                                <li class="facebook footer-social-item">
+                                    <a href="#" title="Facebook" target="_blank" rel="nofollow" aria-label="Facebook"
+                                       class="footer-social-item__link">
+                                        <i class="fab fa-facebook-f footer-social-item__icon"></i>
+                                    </a>
+                                </li>
+                                <li class="twitter footer-social-item">
+                                    <a href="#" title="Twitter" target="_blank" rel="nofollow" aria-label="Twitter"
+                                       class="footer-social-item__link">
+                                        <i class="fab fa-twitter footer-social-item__icon"></i>
+                                    </a>
+                                </li>
+                                <li class="instagram footer-social-item">
+                                    <a href="#" title="Instagram" target="_blank" rel="nofollow" aria-label="Instagram"
+                                       class="footer-social-item__link">
+                                        <i class="fab fa-instagram footer-social-item__icon"></i>
+                                    </a>
+                                </li>
+                                <li class="youtube footer-social-item">
+                                    <a href="#" title="Youtube" target="_blank" rel="nofollow" aria-label="Youtube"
+                                       class="footer-social-item__link">
+                                        <i class="fab fa-youtube footer-social-item__icon"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+
 </body>
 </html>

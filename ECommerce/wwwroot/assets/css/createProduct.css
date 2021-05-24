@@ -1,0 +1,37 @@
+﻿.addnew {
+    margin:10px 20px;
+}
+
+.product-field {
+    margin-right: 10px;
+    display: flex;
+    margin-top:10px;
+}
+
+.product-field-label{
+    min-width:10%;
+    height:30px;
+    font-size:16px;
+    line-height:30px;
+}
+
+.product-field-value{
+    flex:1;
+}
+
+#cke_editor{
+    width:100%;
+}
+
+.create-product-label {
+    margin: 0;
+    line-height: 54px;
+}
+
+.product-list {
+    margin: 10px 20px;
+}
+
+.product-field-select{
+    width:300px;
+}

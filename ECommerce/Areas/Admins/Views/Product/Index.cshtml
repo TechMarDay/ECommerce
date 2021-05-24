@@ -1,0 +1,69 @@
+﻿@model ECommerce.Models.Common.Pagination<ECommerce.Models.Product.ProductViewModel>
+@{
+    Layout = "~/Areas/Admins/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Danh sách sản phẩm</h1>
+
+
+<a href="/admins/product/create" class="btn btn-primary">Thêm mới</a>
+
+@if (Model.TotalRecords > 0)
+{
+    <div class="table">
+        <div class="table-header">
+            <div class="header__item">
+                Tên
+            </div>
+            <div class="header__item">
+                Danh mục
+            </div>
+            <div class="header__item">
+                Hình ảnh
+            </div>
+            <div class="header__item">
+                Giá
+            </div>
+            <div class="header__item"></div>
+        </div>
+        <div class="table-content">
+            @foreach (var item in Model.Items)
+            {
+            <div class="table-row">
+                <div class="table-data">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </div>
+                <div class="table-data">
+                    @Html.DisplayFor(modelItem => item.Category)
+                </div>
+                <div class="table-data">
+                    <img class="img-thumbnail img-thumbnail-custom" width="50" height="50" src="~/@item.ThumbnailImage" />
+                </div>
+                <div class="table-data">
+                    @item.Price.ToString("#.##") VNĐ
+                </div>
+                <div class="table-data">
+                    <form method="post" action="/admins/product/test?id=@item.Id" class="button_Edit_Delete">
+                        <a href="/admins/product/edit?id=@item.Id" class="btn">Sửa</a>
+                        <input type="submit" value="Xóa" class="btn" />
+                    </form>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="pagination">
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="pagination-item page-item @(i == Model.CurrentPage ? "pagination-item--active" : "")">
+                        <a asp-route-currentpage="@i" href="/admins/product?currentPage=@i" class="pagination-item-link page-link">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

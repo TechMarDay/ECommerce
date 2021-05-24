@@ -1,0 +1,231 @@
+﻿:root {
+    --primary-color: #af1713;
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --red-dark-color: #af1713;
+    --dark-light-color: #333f48;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    /* HACK */
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Button */
+.btn {
+    min-width: 124px;
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.5rem;
+    padding: 0 12px;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.6rem;
+    background-color: var(--white-color);
+}
+
+.btn.btn--normal:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+    .btn:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+.btn.btn--size-s {
+    height: 32px;
+    font-size: 12px;
+    padding: 0 8px;
+}
+
+.btn.btn--primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.btn.btn--disabled {
+    color: #949494;
+    cursor: default;
+    filter: brightness(80%);
+    background-color: #c3c3c3;
+}
+
+.input {
+    align-items: center;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: var(--text-color);
+    padding: 0 16px;
+    border-radius: 2px;
+    min-height: 30px;
+}
+
+    .input.input-number {
+        width: 100px;
+    }
+
+.input-checkbox {
+    width:20px;
+}
+
+.form-group1 {
+    margin-top: 10px;
+    min-height: 30px;
+    display: flex;
+}
+
+.control-label{
+    margin-right:10px;
+    font-size:14px;
+    line-height:30px;
+}
+
+.wapper-create{
+    display:flex;
+    align-items:center; 
+    text-align:center;
+}
+/* Selection */
+.select-input {
+    min-width: 200px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.select-input__label {
+    font-size: 1.4rem;
+}
+
+.select-input:hover .select-input__list {
+    display: block;
+}
+
+.select-input__icon {
+    font-size: 1.4rem;
+    color: #d8d0d0;
+    position: relative;
+    top: 1px;
+}
+
+.select-input__list {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 25px;
+    border-radius: 2px;
+    background-color: var(--white-color);
+    padding: 8px 16px;
+    list-style: none;
+    display: none;
+    z-index: 1;
+}
+
+
+.select-input__link {
+    text-decoration: none;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    display: block;
+    padding: 8px 0;
+}
+
+    .select-input__link:hover {
+        color: var(--primary-color);
+    }
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.pagination-item {
+    margin: 0 12px;
+}
+
+.pagination-item--active .pagination-item-link {
+    color: var(--white-color);
+    background-color: #000;
+}
+
+    .pagination-item--active .pagination-item-link:hover {
+        background-color: #000;
+    }
+
+.pagination-item-link {
+    --height: 30px;
+    display: block;
+    cursor:pointer;
+    text-decoration: none;
+    font-size: 2rem;
+    color: #939393;
+    min-width: 40px;
+    height: var(--height);
+    line-height: var(--height);
+    text-align: center;
+    border-radius: 2px;
+    font-weight: 300;
+}
+
+.pagination-item-icon {
+}
+
+.mandatory{
+    color:red;
+    font-size:16px;
+    line-height:16px;
+}
+
+
+.table {
+    width: 100%;
+    border: 1px solid #EEEEEE;
+    margin-top:10px;
+}
+
+.table-header {
+    display: flex;
+    width: 100%;
+    background: #000;
+    color:#fff;
+    padding: 10px 0;
+}
+
+.table-row {
+    display: flex;
+    width: 100%;
+    padding: 10px 0;
+    background: #EEEEEE;
+    align-items: center;
+}
+
+.table-data, .header__item {
+    flex: 1 1 20%;
+    text-align: center;
+}
+
+.header__item {
+    text-transform: uppercase;
+}
