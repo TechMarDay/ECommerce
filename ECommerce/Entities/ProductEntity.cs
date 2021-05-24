@@ -25,6 +25,8 @@ namespace ECommerce.Entities
 
         public bool? BestSeller { get; set; }
 
+        public string Url { get; set; }
+
         public virtual ProductCategoryEntity Category { get; set; }
     }
 }

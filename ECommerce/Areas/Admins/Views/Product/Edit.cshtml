@@ -20,6 +20,10 @@
         <input type="text" name="Name" asp-for="Name" class="input product-field-value" value="@Model.Name" />
     </div>
     <div class="product-field">
+        <label class="product-field-label">Url <span class="mandatory">*</span></label>
+        <input type="text" name="Url" asp-for="Url" class="input product-field-value" value="@Model.Url" />
+    </div>
+    <div class="product-field">
         <label class="product-field-label">Danh mục <span class="mandatory">*</span></label>
         <select asp-for="CategoryId" name="CategoryId" class="product-field-value product-field-select">
             @if (ViewBag.Categories != null && ViewBag.Categories.Count > 0)
@@ -45,29 +49,29 @@
         <label class="product-field-label"></span></label>
         <img class="img-thumbnail img-thumbnail-custom" width="100" height="100" src="~/@Model.ThumbnailImage" />
     </div>
-        <div class="product-field">
-            <label class="product-field-label">Bán chạy</label>
-            @if (Model.BestSeller)
-            {
-                <input asp-for="BestSeller" type="checkbox" name="BestSeller" value="@Model.BestSeller" class="input input-checkbox" onchange="this.value=this.checked" checked />
-            }
-            else
-            {
-                <input asp-for="BestSeller" type="checkbox" name="BestSeller" value="@Model.BestSeller" class="input input-checkbox" onchange="this.value=this.checked" />
-            }
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Giá <span class="mandatory">*</span></label>
-            <input asp-for="Price" type="number" name="Price" class="input input-number" value="@Model.Price.ToString("#.##")" /> <span class="currency">VNĐ</span>
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Giảm giá(%)</label>
-            <input type="number" asp-for="Discount" name="Discount" class="input input-number" value="@Model.Discount" />
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Description <span class="mandatory">*</span></label>
-            <textarea id="editor" name="Description" asp-for="Description" class="product-field-value">@Model.Description</textarea>
-        </div>
+    <div class="product-field">
+        <label class="product-field-label">Bán chạy</label>
+        @if (Model.BestSeller)
+        {
+            <input asp-for="BestSeller" type="checkbox" name="BestSeller" value="@Model.BestSeller" class="input input-checkbox" onchange="this.value=this.checked" checked />
+        }
+        else
+        {
+            <input asp-for="BestSeller" type="checkbox" name="BestSeller" value="@Model.BestSeller" class="input input-checkbox" onchange="this.value=this.checked" />
+        }
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Giá <span class="mandatory">*</span></label>
+        <input asp-for="Price" type="number" name="Price" class="input input-number" value="@Model.Price.ToString("#.##")" /> <span class="currency">VNĐ</span>
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Giảm giá(%)</label>
+        <input type="number" asp-for="Discount" name="Discount" class="input input-number" value="@Model.Discount" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Mô tả <span class="mandatory">*</span></label>
+        <textarea id="editor" name="Description" asp-for="Description" class="product-field-value">@Model.Description</textarea>
+    </div>
 
 </form>
 

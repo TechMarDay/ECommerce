@@ -22,5 +22,7 @@ namespace ECommerce.Models.Product
         public int? Discount { get; set; } = 0;
 
         public bool BestSeller { get; set; }
+
+        public string Url { get; set; }
     }
 }

@@ -13,6 +13,10 @@ namespace ECommerce.Entities
 
         public string Content { get; set; }
 
+        public string Summary { get; set; }
+
         public string Image { get; set; }
+
+        public string Url { get; set; }
     }
 }

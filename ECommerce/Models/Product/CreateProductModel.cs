@@ -19,5 +19,7 @@ namespace ECommerce.Models.Product
         public decimal? DiscountPrice { get; set; } = 0;
 
         public bool BestSeller { get; set; }
+
+        public string Url { get; set; }
     }
 }

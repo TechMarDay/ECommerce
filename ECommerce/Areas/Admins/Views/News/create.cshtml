@@ -1,0 +1,54 @@
+﻿@{
+    Layout = "~/Areas/Admins/Views/Shared/_Layout.cshtml";
+}
+<link href="~/assets/css/createProduct.css" rel="stylesheet" />
+
+@if (!string.IsNullOrEmpty(@ViewBag.Error))
+{
+    <h4 style="color:red">@ViewBag.Error</h4>
+}
+<form method="post" action="create" enctype="multipart/form-data">
+    <div class="product-field">
+        <h3 class="create-product-label">Thêm mới tin tức</h3>
+        <input type="submit" value="Lưu" class="btn btn-primary addnew" />
+        <a class="btn btn-primary product-list" href="/admins/product">Danh sách tin tức</a>
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Tiêu đề <span class="mandatory">*</span></label>
+        <input type="text" name="Title" asp-for="Title" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Tóm tắt <span class="mandatory">*</span></label>
+        <input type="text" name="Summary" asp-for="Summary" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Url <span class="mandatory">*</span></label>
+        <input type="text" name="Url" asp-for="Url" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Hình ảnh<span class="mandatory">*</span></label>
+        <input type="file" asp-for="Image" name="Image" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Nội dung <span class="mandatory">*</span></label>
+        <textarea id="editor" name="Content" asp-for="Content" class="product-field-value"></textarea>
+    </div>
+
+</form>
+
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(function () {
+                CKEDITOR.replace('editor', {
+                    height: 300,
+                    filebrowserUploadUrl: '/uploadCkeditor',
+                    filebrowserBrowseUrl: '/filebrowse'
+                });
+            });
+        });
+    </script>
+}

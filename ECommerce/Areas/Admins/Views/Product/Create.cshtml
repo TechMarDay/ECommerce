@@ -11,43 +11,47 @@
     <div class="product-field">
         <h3 class="create-product-label">Thêm mới sản phẩm</h3>
         <input type="submit" value="Lưu" class="btn btn-primary addnew" />
-        <a class="btn btn-primary product-list" href="/admins/product">Danh sách sản phẩm</a>
+        <a class="btn btn-primary product-list" href="/admins/news">Danh sách sản phẩm</a>
     </div>
-        <div class="product-field">
-            <label class="product-field-label">Tên <span class="mandatory">*</span></label>
-            <input type="text" name="Name" asp-for="Name" class="input product-field-value" />
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Danh mục <span class="mandatory">*</span></label>
-            <select asp-for="CategoryId" name="CategoryId" class="product-field-value product-field-select">
-                @if(ViewBag.Categories != null && ViewBag.Categories.Count > 0)
+    <div class="product-field">
+        <label class="product-field-label">Tên <span class="mandatory">*</span></label>
+        <input type="text" name="Name" asp-for="Name" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Url <span class="mandatory">*</span></label>
+        <input type="text" name="Url" asp-for="Url" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Danh mục <span class="mandatory">*</span></label>
+        <select asp-for="CategoryId" name="CategoryId" class="product-field-value product-field-select">
+            @if (ViewBag.Categories != null && ViewBag.Categories.Count > 0)
                 @foreach (var item in ViewBag.Categories)
                 {
-                <option value="@item.Id">@item.Name</option>
+                    <option value="@item.Id">@item.Name</option>
                 }
-            </select>
+        </select>
 
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Hình ảnh<span class="mandatory">*</span></label>
-            <input type="file" asp-for="ThumbnailImage" name="ThumbnailImage" class="input product-field-value" />
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Bán chạy</label>
-            <input asp-for="BestSeller" type="checkbox" name="BestSeller" value="true" class="input input-checkbox" />
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Giá <span class="mandatory">*</span></label>
-            <input asp-for="Price" type="number" name="Price" class="input input-number" /><span class="currency">VNĐ</span>
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Giảm giá(%)</label>
-            <input type="number" asp-for="Discount" name="Discount" class="input input-number" />
-        </div>
-        <div class="product-field">
-            <label class="product-field-label">Description <span class="mandatory">*</span></label>
-            <textarea id="editor" name="Description" asp-for="Description" class="product-field-value"></textarea>
-        </div>
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Hình ảnh<span class="mandatory">*</span></label>
+        <input type="file" asp-for="ThumbnailImage" name="ThumbnailImage" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Bán chạy</label>
+        <input asp-for="BestSeller" type="checkbox" name="BestSeller" value="true" class="input input-checkbox" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Giá <span class="mandatory">*</span></label>
+        <input asp-for="Price" type="number" name="Price" class="input input-number" /><span class="currency">VNĐ</span>
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Giảm giá(%)</label>
+        <input type="number" asp-for="Discount" name="Discount" class="input input-number" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Mô tả <span class="mandatory">*</span></label>
+        <textarea id="editor" name="Description" asp-for="Description" class="product-field-value"></textarea>
+    </div>
 
 </form>
 

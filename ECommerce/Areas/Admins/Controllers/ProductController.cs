@@ -22,7 +22,7 @@ namespace ECommerce.Areas.Admins.Controllers
         private readonly IStorageService storageService;
 
 
-        public ProductController(EcommerceDbContext dbContext, IWebHostEnvironment hostingEnvironment,
+        public ProductController(EcommerceDbContext dbContext,
             IStorageService storageService)
         {
             this.dbContext = dbContext;
@@ -38,7 +38,7 @@ namespace ECommerce.Areas.Admins.Controllers
             var productsQuery = from p in dbContext.Products
                                 join c in dbContext.ProductCategories
                                      on p.CategoryId equals c.Id
-                                     orderby p.CreationTime
+                                     orderby p.CreationTime descending
                                 select new ProductViewModel
                                 {
                                     Id = p.Id,
@@ -98,6 +98,12 @@ namespace ECommerce.Areas.Admins.Controllers
                 ViewBag.Error += ", nhập mô tả";
             }
 
+            if (string.IsNullOrWhiteSpace(model.Url))
+            {
+                hasError = true;
+                ViewBag.Error += ", nhập url";
+            }
+
             if (hasError)
             {
                 ViewBag.Error += " cho sản phẩm";
@@ -121,7 +127,8 @@ namespace ECommerce.Areas.Admins.Controllers
                     Discount = model.Discount,
                     DiscountPrice = model.DiscountPrice,
                     BestSeller = model.BestSeller,
-                    CreationTime = DateTime.UtcNow
+                    CreationTime = DateTime.UtcNow,
+                    Url = model.Url
                 };
 
                 if (model.ThumbnailImage != null)
@@ -166,6 +173,7 @@ namespace ECommerce.Areas.Admins.Controllers
                                    Discount = p.Discount,
                                    BestSeller = (bool)p.BestSeller,
                                    ThumbnailImage = p.Image,
+                                   Url = p.Url,
                                    Category = new ProductCategoryModel
                                    {
                                        Id = c.Id,
@@ -205,6 +213,9 @@ namespace ECommerce.Areas.Admins.Controllers
             if (string.IsNullOrWhiteSpace(productModel.Description))
                 hasError = true;
 
+            if (string.IsNullOrWhiteSpace(productModel.Url))
+                hasError = true;
+
             if (hasError)
             {
                 ViewBag.Categories = await dbContext.ProductCategories.Select(x => new ProductCategoryModel
@@ -226,6 +237,7 @@ namespace ECommerce.Areas.Admins.Controllers
             product.BestSeller = productModel.BestSeller;
             product.CategoryId = productModel.CategoryId;
             product.LastModificationTime = DateTime.UtcNow;
+            product.Url = productModel.Url;
 
             if (productModel.ThumbnailImage != null)
             {
@@ -241,7 +253,7 @@ namespace ECommerce.Areas.Admins.Controllers
         }
 
 
-        [Route("test")]
+        [Route("delete")]
         [HttpPost]
         public async Task<IActionResult> DeleteAsync(int? id)
         {

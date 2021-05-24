@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\uploads\news\" />
     <Folder Include="wwwroot\uploads\products\" />
   </ItemGroup>
 

@@ -1,29 +1,30 @@
-﻿@model ECommerce.Models.Common.Pagination<ECommerce.Models.Product.ProductViewModel>
+﻿@model ECommerce.Models.Common.Pagination<ECommerce.Models.News.NewsViewModel>
 @{
     Layout = "~/Areas/Admins/Views/Shared/_Layout.cshtml";
 }
 
 
-<h1>Danh sách sản phẩm</h1>
+<h1>Danh sách tin tức</h1>
 
 
-<a href="/admins/product/create" class="btn btn-primary">Thêm mới</a>
+<a href="/admins/news/create" class="btn btn-primary">Thêm mới</a>
+
 
 @if (Model.TotalRecords > 0)
 {
     <div class="table">
         <div class="table-header">
             <div class="header__item">
-                Tên
+                Tiêu đề
             </div>
             <div class="header__item">
-                Danh mục
+                Đường dẫn
             </div>
             <div class="header__item">
                 Hình ảnh
             </div>
             <div class="header__item">
-                Giá
+                Tóm tắt
             </div>
             <div class="header__item"></div>
         </div>
@@ -32,20 +33,23 @@
             {
             <div class="table-row">
                 <div class="table-data">
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.Title)
                 </div>
                 <div class="table-data">
-                    @Html.DisplayFor(modelItem => item.Category)
+                    @Html.DisplayFor(modelItem => item.Url)
                 </div>
                 <div class="table-data">
-                    <img class="img-thumbnail img-thumbnail-custom" width="50" height="50" src="~/@item.ThumbnailImage" />
+                    <img class="img-thumbnail img-thumbnail-custom" width="50" height="50" src="~/@item.Image" />
                 </div>
                 <div class="table-data">
-                    @item.Price.ToString("#.##") VNĐ
+                    @if (item.Summary?.Length > 10)
+                        @item.Summary.Substring(0, 10);
+                    else
+                    @item.Summary;
                 </div>
                 <div class="table-data">
-                    <form method="post" action="/admins/product/delete?id=@item.Id" class="button_Edit_Delete">
-                        <a href="/admins/product/edit?id=@item.Id" class="btn">Sửa</a>
+                    <form method="post" action="/admins/news/delete?id=@item.Id" class="button_Edit_Delete">
+                        <a href="/admins/news/edit?id=@item.Id" class="btn">Sửa</a>
                         <input type="submit" value="Xóa" class="btn" />
                     </form>
                 </div>
