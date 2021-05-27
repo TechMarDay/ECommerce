@@ -9,6 +9,7 @@ namespace ECommerce.Areas.Admins.Controllers
     [Area("Admins")]
     public class DashBoardController : Controller
     {
+        [HttpGet("admins")]
         public IActionResult Index()
         {
             return View();

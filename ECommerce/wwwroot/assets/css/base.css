@@ -166,12 +166,13 @@ html {
 }
 
 .pagination-item--active .pagination-item-link {
-    color: var(--white-color);
-    background-color: #000;
+    border: 1px solid #af1713;
+    color: var(--primary-color);
 }
 
     .pagination-item--active .pagination-item-link:hover {
-        background-color: #000;
+        color: var(--primary-color);
+        border: 1px solid #af1713;
     }
 
 .pagination-item-link {
@@ -179,7 +180,7 @@ html {
     display: block;
     cursor:pointer;
     text-decoration: none;
-    font-size: 2rem;
+    font-size: 16px;
     color: #939393;
     min-width: 40px;
     height: var(--height);
@@ -189,8 +190,13 @@ html {
     font-weight: 300;
 }
 
-.pagination-item-icon {
-}
+    .pagination-item-link:hover {
+        color: var(--primary-color);
+        border: 1px solid #af1713;
+    }
+
+    .pagination-item-icon {
+    }
 
 .mandatory{
     color:red;

@@ -31,4 +31,16 @@
         font-size: 20px;
         line-height: 20px;
     }
+
+    .product-detail-header {
+        text-align: center;
+    }
+
+    .product-detail-image {
+        width: 99%;
+    }
+
+    .sort-product{
+        display:none;
+    }
 }

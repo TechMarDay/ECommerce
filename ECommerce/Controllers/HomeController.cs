@@ -1,5 +1,9 @@
-﻿using ECommerce.Models;
+﻿using ECommerce.Data;
+using ECommerce.Extension;
+using ECommerce.Models;
+using ECommerce.Models.Product;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,22 +16,46 @@ namespace ECommerce.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly EcommerceDbContext dbContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, EcommerceDbContext dbContext)
         {
             _logger = logger;
+            this.dbContext = dbContext;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
+            var productsQuery = from p in dbContext.Products
+                                orderby p.CreationTime descending
+                                select new ProductViewModel
+                                {
+                                    Id = p.Id,
+                                    Name = p.Name,
+                                    Price = p.Price,
+                                    Discount = p.Discount,
+                                    BestSeller = (bool)p.BestSeller,
+                                    ThumbnailImage = p.Image,
+                                    Url = p.Url,
+                                    DiscountPrice = p.Price * (100 - p.Discount)/100
+                                };
+
+            ViewBag.Products = await productsQuery.Take(5).ToListAsync();
+
+            ViewBag.BetsellerProducts = await productsQuery.Where(x => x.BestSeller)
+                .Take(5).ToListAsync();
+
             return View();
         }
 
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [HttpGet]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

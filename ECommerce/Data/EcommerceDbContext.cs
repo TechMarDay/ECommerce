@@ -40,10 +40,10 @@ namespace ECommerce.Data
                 entity.Property(e => e.Image).IsRequired();
 
                 entity.Property(e => e.Price).IsRequired()
-                .HasColumnType("decimal(18,4)");
+                .HasColumnType("decimal(18,2)");
 
                 entity.Property(e => e.DiscountPrice)
-                    .HasColumnType("decimal(18,4)");
+                    .HasColumnType("decimal(18,2)");
 
                 entity.HasOne(d => d.Category)
                     .WithMany(p => p.Products)

@@ -41,7 +41,7 @@
                     <img class="img-thumbnail img-thumbnail-custom" width="50" height="50" src="~/@item.ThumbnailImage" />
                 </div>
                 <div class="table-data">
-                    @item.Price.ToString("#.##") VNĐ
+                    @item.Price.ToString("###,###,###") VNĐ
                 </div>
                 <div class="table-data">
                     <form method="post" action="/admins/product/delete?id=@item.Id" class="button_Edit_Delete">

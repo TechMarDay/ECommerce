@@ -17,10 +17,12 @@ namespace ECommerce.Entities
 
         public string Image { get; set; }
 
+        [Column(TypeName = "decimal(18, 3)")]
         public decimal Price { get; set; }
 
         public int? Discount { get; set; }
 
+        [Column(TypeName = "decimal(18, 3)")]
         public decimal? DiscountPrice { get; set; }
 
         public bool? BestSeller { get; set; }

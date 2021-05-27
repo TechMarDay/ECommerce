@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ECommerce.Models.Product
 {
-    public class ProductViewModel
+    public class ProductDetailModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -23,5 +23,7 @@ namespace ECommerce.Models.Product
         public bool BestSeller { get; set; }
 
         public string Url { get; set; }
+
+        public string Description { get; set; }
     }
 }
