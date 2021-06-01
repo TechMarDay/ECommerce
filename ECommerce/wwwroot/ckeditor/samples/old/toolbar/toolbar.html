@@ -102,6 +102,8 @@ CKEDITOR.replace( <em>'textarea_id'</em>, {
 
 	CKEDITOR.config.extraPlugins = 'toolbar';
 
+    CKEDITOR.config.extraPlugins = 'justify';
+
 	CKEDITOR.on( 'instanceReady', function( evt ) {
 		var editor = evt.editor,
 			editorCurrent = editor.name == 'editorCurrent',

@@ -43,4 +43,9 @@
     .sort-product{
         display:none;
     }
+
+    .news-detail img {
+        max-width: 200px !important;
+        height: auto !important;
+    }
 }

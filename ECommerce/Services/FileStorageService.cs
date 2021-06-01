@@ -29,7 +29,7 @@ namespace ECommerce.Services
 
         public async Task<string> SaveFileAsync(IFormFile file, string filePath)
         {
-            var fileNameUnique = DateTime.Now.ToString("yyyyMMddHHmmss") + file.FileName;
+            var fileNameUnique = DateTime.Now.ToString("yyyyMMddHHmmss") + file.FileName?.Replace(" ", string.Empty);
             var path = Path.Combine(Directory.GetCurrentDirectory(), hostingEnvironment.WebRootPath, filePath, fileNameUnique);
             var stream = new FileStream(path, FileMode.Create);
             await file.CopyToAsync(stream);

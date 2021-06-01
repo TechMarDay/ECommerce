@@ -1,0 +1,66 @@
+﻿@model ECommerce.Models.Common.Pagination<ECommerce.Models.News.NewsViewModel>
+@*@{
+    ViewData["Title"] = "Home Page";
+}*@
+<link href="~/assets/css/news.css" rel="stylesheet" />
+
+<div class="grid wide">
+    <section class="row bread-crumb-news">
+        <div class="col l-12 m-12 c-12">
+            <ul class="bread-crumb-news-list">
+                <li class="bread-crumb-news-item">
+                    <a href="/" class="bread-crumb-news__link">Trang chủ</a>
+                    <i class="fa fa-angle-right bread-crumb-news__icon"></i>
+                </li>
+                <li class="bread-crumb-news-item">
+                    <a href="/tintuc.html" class="bread-crumb-news__link">Tin tức</a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    @if (Model.Items != null && Model.Items.Count > 0)
+    {
+        @foreach (var item in Model.Items)
+        {
+            <section class="news-item-wrapper row">
+                <div class="news-item col l-12 m-12 c-12">
+                    <div class="row">
+                        <div class="col l-6 m-12 c-12 news-item-thumbnail">
+                            <a class="news-item__link" href="~/tintuc/@item.Url">
+                                <img src="~/@item.Image"
+                                     alt="news thumbnail" class="news-item-image">
+                            </a>
+                        </div>
+
+                        <div class="col l-6 m-12 c-12 news-item-main">
+                            <div class="news-item-post-time">@item.CreateDate</div>
+                            <h3 class="news-item-name">
+                                <a class="news-item__link"  href="~/tintuc/@item.Url"
+                                   title="@item.Title">
+                                    @item.Title
+                                </a>
+                            </h3>
+                            <p class="news-item-summary">
+                                @item.Summary
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        }
+    }
+
+
+    <div class="row">
+        <div class="col l-12 m-12 c-12">
+            <ul class="pagination">
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="pagination-item page-item @(i == Model.CurrentPage ? "pagination-item--active" : "")">
+                        <a href="/sanpham.html?currentPage=@i" class="pagination-item-link page-link">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

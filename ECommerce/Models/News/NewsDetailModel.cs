@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ECommerce.Models.News
+﻿namespace ECommerce.Models.News
 {
-    public class NewsViewModel
+    public class NewsDetailModel
     {
         public int Id { get; set; }
 
@@ -16,6 +11,8 @@ namespace ECommerce.Models.News
         public string Image { get; set; }
 
         public string Url { get; set; }
+
+        public string Content { get; set; }
 
         public string CreateDate { get; set; }
     }

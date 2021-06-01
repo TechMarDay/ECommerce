@@ -43,7 +43,8 @@ namespace ECommerce.Controllers
                                     Url = p.Url,
                                     Category = c.Name,
                                     Description  = p.Description,
-                                    DiscountPrice = p.Price * (100 - p.Discount) / 100
+                                    DiscountPrice = p.Price * (100 - p.Discount) / 100,
+                                    SavePrice = p.Price - p.Price * (100 - p.Discount) / 100
                                 };
 
             var productDetail = await productsQuery.FirstOrDefaultAsync();
@@ -64,6 +65,11 @@ namespace ECommerce.Controllers
 
             ViewBag.Products = await relatedProductsQuery.Take(5).ToListAsync();
 
+            ViewBag.Title = productDetail.Name;
+            if (productDetail.Description.Length > 50)
+                ViewBag.Description = productDetail.Description.Substring(0, 50);
+            else
+                ViewBag.Description = productDetail.Description;
             ViewBag.DisplaySlider = false;
 
             if (productDetail == null)
@@ -98,7 +104,9 @@ namespace ECommerce.Controllers
                                     Url = p.Url
                                 };
             ViewBag.DisplaySlider = false;
-            var products = await productsQuery.ToPagedListAsync<ProductViewModel>((int)currentPage, 36);
+            var products = await productsQuery.ToPagedListAsync<ProductViewModel>((int)currentPage, 10);
+            ViewBag.Title = "Gchill sản phẩm";
+            ViewBag.Description = "Các sản phẩm của Gchill, hãy để chúng tôi phục vụ bạn";
             return View(products);
         }
     }

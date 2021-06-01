@@ -20,7 +20,7 @@ namespace ECommerce.Areas.Admins.Controllers
         [HttpPost]
         public IActionResult Upload(IFormFile upload)
         {
-            var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + upload.FileName;
+            var fileName = DateTime.Now.ToString("yyyyMMddHHmmss") + upload.FileName?.Replace(" ", string.Empty);
             var path = Path.Combine(Directory.GetCurrentDirectory(), hostingEnvironment.WebRootPath, "uploads", fileName);
             var stream = new FileStream(path, FileMode.Create);
             upload.CopyTo(stream);

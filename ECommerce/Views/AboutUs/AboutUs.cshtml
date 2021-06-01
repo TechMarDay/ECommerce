@@ -1,0 +1,93 @@
+﻿@*@{
+    ViewData["Title"] = "Home Page";
+}*@
+<link href="~/assets/css/aboutUs.css" rel="stylesheet" />
+
+<div class="app__container">
+    <div class="grid wide">
+        <section class="row bread-crumb-news">
+            <div class="col l-12 m-12 c-12">
+                <ul class="bread-crumb-news-list">
+                    <li class="bread-crumb-news-item">
+                        <a href="/" class="bread-crumb-news__link">Trang chủ</a>
+                        <i class="fa fa-angle-right bread-crumb-news__icon"></i>
+                    </li>
+                    <li class="bread-crumb-news-item">
+                        <a href="gioithieu.html" class="bread-crumb-news__link">Giới thiệu</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="news-detail-wrapper row">
+            <div class="news-detail col l-12 m-12 c-12">
+                <div class="row">
+                    <div class="col l-9 m-9 c-12">
+                        <h1 class="news-detail-head">Giới thiệu</h1>
+                        <div class="news-detail-content">
+                            <p>
+                                Trang giới thiệu giúp khách hàng hiểu rõ hơn về cửa hàng của bạn.
+                                Hãy cung cấp thông tin cụ thể về việc kinh doanh, về cửa hàng, thông tin liên hệ.
+                                Điều này sẽ giúp khách hàng cảm thấy tin tưởng khi mua hàng trên website của bạn.
+                            </p>
+                            Một vài gợi ý cho nội dung trang Giới thiệu:
+                            <br>
+                            <ul>
+                                <li>Bạn là ai</li>
+                                <li>Giá trị kinh doanh của bạn là gì</li>
+                                <li>Địa chỉ cửa hàng</li>
+                                <li>Bạn đã kinh doanh trong ngành hàng này bao lâu rồi</li>
+                                <li>Bạn kinh doanh ngành hàng online được bao lâu</li>
+                                <li>Đội ngũ của bạn gồm những ai</li>
+                                <li>Thông tin liên hệ</li>
+                                <li>Liên kết đến các trang mạng xã hội (Twitter, Facebook)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col l-3 m-3 c-12 sidebar">
+                        <aside class="sidebar-collection-category">
+                            <h3 class="sidebar-collection-category-head">DANH MỤC</h3>
+                            <ul class="sidebar-collection-list">
+                                <li class="sidebar-collection-item">
+                                    <a href="/sanpham.html" class="sidbar-collection-item__link">Thời trang</a>
+                                </li>
+                                <li class="sidebar-collection-item">
+                                    <a href="/sanpham.html" class="sidbar-collection-item__link">Sản phẩm bán chạy</a>
+                                </li>
+                                <li class="sidebar-collection-item">
+                                    <a href="/sanpham.html" class="sidbar-collection-item__link">Phụ kiện</a>
+                                </li>
+                            </ul>
+                        </aside>
+                        <aside class="sidebar-top-news">
+                            <h3 class="sidebar-top-news-head">BÀI VIẾT MỚI NHẤT</h3>
+                            <ul class="top-news-list">
+                                @if (ViewBag.LatestNews != null && ViewBag.LatestNews.Count > 0)
+                                {
+                                    var index = 0;
+                                    foreach (var item in ViewBag.LatestNews)
+                                    {
+                                        index++;
+                                        <li class="top-news-item">
+                                            <label class="top-news-item-label">@index</label>
+                                            <a class="top-news-item__link" href="~/tintuc/@item.Url">
+                                                @item.Title
+                                            </a>
+                                        </li>
+                                    }
+                                }
+
+                            </ul>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+@section Scripts {
+}

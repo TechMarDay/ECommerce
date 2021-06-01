@@ -1,5 +1,6 @@
 ﻿:root {
     --primary-color: #af1713;
+    /*--primary-color: #567d68;*/
     --white-color: #fff;
     --black-color: #000;
     --text-color: #333;
@@ -17,6 +18,10 @@ html {
     box-sizing: border-box;
 }
 
+body {
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+}
+
 /* Button */
 .btn {
     min-width: 124px;
@@ -26,10 +31,10 @@ html {
     border-radius: 2px;
     font-size: 1.5rem;
     padding: 0 12px;
-    outline: none;
     cursor: pointer;
     color: var(--text-color);
     display: inline-flex;
+    outline: none;
     justify-content: center;
     align-items: center;
     line-height: 1.6rem;
@@ -41,7 +46,7 @@ html {
 }
 
     .btn:hover {
-        background-color: rgba(0, 0, 0, 0.05);
+        /*background-color: rgba(0, 0, 0, 0.05);*/
     }
 
 .btn.btn--size-s {

@@ -1,0 +1,99 @@
+﻿@model ECommerce.Models.News.NewsDetailModel
+
+@*@{
+    ViewData["Title"] = "Home Page";
+}*@
+<link href="~/assets/css/blogDetail.css" rel="stylesheet" />
+<link href="~/assets/css/news.css" rel="stylesheet" />
+
+<div class="app__container">
+    <div class="grid wide">
+        <section class="row bread-crumb-news">
+            <div class="col l-12 m-12 c-12">
+                <ul class="bread-crumb-news-list">
+                    <li class="bread-crumb-news-item">
+                        <a href="/" class="bread-crumb-news__link">Trang chủ</a>
+                        <i class="fa fa-angle-right bread-crumb-news__icon"></i>
+                    </li>
+                    <li class="bread-crumb-news-item">
+                        <a href="/tintuc.html" class="bread-crumb-news__link">Tin tức</a>
+                        <i class="fa fa-angle-right bread-crumb-news__icon"></i>
+                    </li>
+                    <li class="bread-crumb-news-item">
+                        <a href="#" class="bread-crumb-news__link">@Model.Title</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="news-detail-wrapper row">
+            <div class="news-detail col l-12 m-12 c-12">
+                <div class="row">
+                    <div class="col l-9 m-9 c-12">
+                        <h1 class="news-detail-head">@Model.Title</h1>
+                        <p class="news-detail-content">
+                            @Html.Raw(Model.Content)
+                        </p>
+                    </div>
+
+                    <div class="col l-3 m-3 c-12 sidebar">
+                        <aside class="sidebar-collection-category">
+                            <h3 class="sidebar-collection-category-head">DANH MỤC</h3>
+                            <ul class="sidebar-collection-list">
+                                <li class="sidebar-collection-item">
+                                    <a href="/sanpham.html" class="sidbar-collection-item__link">Thời trang</a>
+                                </li>
+                                <li class="sidebar-collection-item">
+                                    <a href="/sanpham.html" class="sidbar-collection-item__link">Sản phẩm bán chạy</a>
+                                </li>
+                                <li class="sidebar-collection-item">
+                                    <a href="/sanpham.html" class="sidbar-collection-item__link">Phụ kiện</a>
+                                </li>
+                            </ul>
+                        </aside>
+                        <aside class="sidebar-top-news">
+                            <h3 class="sidebar-top-news-head">BÀI VIẾT MỚI NHẤT</h3>
+                            <ul class="top-news-list">
+                                @if (ViewBag.LatestNews != null && ViewBag.LatestNews.Count > 0)
+                                {
+                                    var index = 0;
+                                    foreach (var item in ViewBag.LatestNews)
+                                    {
+                                        index++;
+                                        <li class="top-news-item">
+                                            <label class="top-news-item-label">@index</label>
+                                            <a class="top-news-item__link" href="~/tintuc/@item.Url">
+                                                @item.Title
+                                            </a>
+                                        </li>
+                                    }
+                                }
+
+                            </ul>
+                        </aside>
+
+                        <aside class="news-detail-banner">
+                            <a href="/" title="Evo Fashion" class="single_image_effect">
+                                <img class="news-detail-banner-img" src="https://file.hstatic.net/200000265511/file/blog_banner_2e48fdcb7a974f3a86ac1ea8f83c5e64.jpg" data-src="https://file.hstatic.net/200000265511/file/blog_banner_2e48fdcb7a974f3a86ac1ea8f83c5e64.jpg" alt="gchill">
+                            </a>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/ckeditor/ckeditor.js"></script>
+    <script src="~/ckeditor/adapters/jquery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(function () {
+                hljs.initHighlightingOnLoad();
+            });
+    </script>
+}

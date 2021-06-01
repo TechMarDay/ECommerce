@@ -1,6 +1,7 @@
 ﻿using ECommerce.Data;
 using ECommerce.Extension;
 using ECommerce.Models;
+using ECommerce.Models.News;
 using ECommerce.Models.Product;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -46,12 +47,30 @@ namespace ECommerce.Controllers
             ViewBag.BetsellerProducts = await productsQuery.Where(x => x.BestSeller)
                 .Take(5).ToListAsync();
 
+            var newsQuery = from n in dbContext.News
+                            orderby n.CreationTime descending
+                            select new NewsViewModel
+                            {
+                                Id = n.Id,
+                                Summary = n.Summary,
+                                Image = n.Image,
+                                Url = n.Url,
+                                Title = n.Title
+                            };
+
+            ViewBag.News = await newsQuery.Take(4).ToListAsync();
+
+            ViewBag.Title = "Gchill";
+            ViewBag.Description = "Gchill nơi có mọi thứ bạn cần, hãy để chúng tôi phục vụ bạn";
+
             return View();
         }
 
         [HttpGet]
         public IActionResult Privacy()
         {
+            ViewBag.Title = "Gchill";
+            ViewBag.Description = "Gchill nơi có mọi thứ bạn cần, hãy để chúng tôi phục vụ bạn";
             return View();
         }
 
@@ -59,6 +78,8 @@ namespace ECommerce.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
+            ViewBag.Title = "Gchill";
+            ViewBag.Description = "Gchill nơi có mọi thứ bạn cần, hãy để chúng tôi phục vụ bạn";
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }

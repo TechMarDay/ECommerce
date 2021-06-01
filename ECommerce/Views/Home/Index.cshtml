@@ -1,6 +1,6 @@
-﻿@{
+﻿@*@{
     ViewData["Title"] = "Home Page";
-}
+}*@
 <div class="grid wide">
     <div class="row app__content">
         <div class="col l-12 m-12 c-12">
@@ -95,7 +95,7 @@
                         @foreach (var item in ViewBag.BetsellerProducts)
                         {
                             <div class="col l-2-4 m-4 c-6 ">
-                                <a href="/" class="product-item">
+                                <a href="~/@item.Url" class="product-item">
                                     <div class="product-item__img" style="background-image: url(@item.ThumbnailImage);">
                                     </div>
                                     <h4 class="product-item__name">
@@ -126,62 +126,32 @@
             <div class="col l-12 m-12 c-12">
                 <div class="news-section">
                     <h3 class="news-section-label">
-                        <a href="/" class="news-section__link">Tin thời trang</a>
+                        <a href="/tintuc.html" class="news-section__link">Tin thời trang</a>
                     </h3>
                 </div>
                 <div class="news">
                     <div class="row">
-                        <div class="col l-3 m-4 c-6">
-                            <a href="/" class="news-item">
-                                <div class="news-item__img" style="background-image: url(https://file.hstatic.net/200000265511/article/charles-keith-as-seen-at-fashion-week-ss-blog-5_717f64c0446b497caf0bece27c9c0b59_large.jpg);">
+                        @* news item *@
+                        @if (ViewBag.News != null && ViewBag.News.Count > 0)
+                        {
+                            @foreach (var item in ViewBag.News)
+                            {
+                                <div class="col l-3 m-4 c-6">
+                                    <a href="~/tintuc/@item.Url" class="news-item">
+                                        <div class="news-item__img"
+                                             style="background-image: url(@item.Image);">
+                                        </div>
+                                        <h3 class="news-item__title">
+                                            @item.Title
+                                        </h3>
+                                        <p class="news-item__description">
+                                            @item.Summary
+                                        </p>
+                                    </a>
                                 </div>
-                                <h3 class="news-item__title">
-                                    Thấy ai nấy rôm rả "Lúc đi hết mình lúc ....
-                                </h3>
-                                <p class="news-item__description">
-                                    Trong một sự kiện được tổ chức bởi thương hiệu CHARLES & KEITH, Angela Phương Trinh xuất hiện với vẻ ngoài ...
-                                </p>
-                            </a>
-                        </div>
+                            }
+                        }
 
-                        <div class="col l-3 m-4 c-6">
-                            <a href="/" class="news-item">
-                                <div class="news-item__img" style="background-image: url(https://file.hstatic.net/200000265511/article/charles-keith-as-seen-at-fashion-week-ss-blog-5_717f64c0446b497caf0bece27c9c0b59_large.jpg);">
-                                </div>
-                                <h3 class="news-item__title">
-                                    Thấy ai nấy rôm rả "Lúc đi hết mình lúc ....
-                                </h3>
-                                <p class="news-item__description">
-                                    Trong một sự kiện được tổ chức bởi thương hiệu CHARLES & KEITH, Angela Phương Trinh xuất hiện với vẻ ngoài ...
-                                </p>
-                            </a>
-                        </div>
-
-                        <div class="col l-3 m-4 c-6">
-                            <a href="/" class="news-item">
-                                <div class="news-item__img" style="background-image: url(https://file.hstatic.net/200000265511/article/charles-keith-as-seen-at-fashion-week-ss-blog-5_717f64c0446b497caf0bece27c9c0b59_large.jpg);">
-                                </div>
-                                <h3 class="news-item__title">
-                                    Thấy ai nấy rôm rả "Lúc đi hết mình lúc ....
-                                </h3>
-                                <p class="news-item__description">
-                                    Trong một sự kiện được tổ chức bởi thương hiệu CHARLES & KEITH, Angela Phương Trinh xuất hiện với vẻ ngoài ...
-                                </p>
-                            </a>
-                        </div>
-
-                        <div class="col l-3 m-4 c-6">
-                            <a href="/" class="news-item">
-                                <div class="news-item__img" style="background-image: url(https://file.hstatic.net/200000265511/article/charles-keith-as-seen-at-fashion-week-ss-blog-5_717f64c0446b497caf0bece27c9c0b59_large.jpg);">
-                                </div>
-                                <h3 class="news-item__title">
-                                    Thấy ai nấy rôm rả "Lúc đi hết mình lúc về hết h...
-                                </h3>
-                                <p class="news-item__description">
-                                    Trong một sự kiện được tổ chức bởi thương hiệu CHARLES & KEITH, Angela Phương Trinh xuất hiện với vẻ ngoài ...
-                                </p>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

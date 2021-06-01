@@ -2,10 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <NoWin32Manifest>true</NoWin32Manifest>
+    <UserSecretsId>c46a590b-74a6-45a3-9f41-7aa23649dfb7</UserSecretsId>
+    <StartupObject>ECommerce.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="wwwroot\uploads\news\" />
     <Folder Include="wwwroot\uploads\products\" />
   </ItemGroup>

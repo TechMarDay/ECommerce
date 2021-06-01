@@ -23,6 +23,8 @@ namespace ECommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             services.AddDbContext<EcommerceDbContext>(options =>
                options.UseSqlServer(Configuration.GetConnectionString("EcommerceConnection")));
 
@@ -45,19 +47,25 @@ namespace ECommerce
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseCors(builder => builder
+                .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles(); // For the wwwroot folder.
 
             // using Microsoft.Extensions.FileProviders;
             // using System.IO;
-            app.UseFileServer(new FileServerOptions
-            {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(env.ContentRootPath, "MyStaticFiles")),
-                RequestPath = "/StaticFiles",
-                EnableDirectoryBrowsing = true
-            });
+            //app.UseFileServer(new FileServerOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(
+            //        Path.Combine(env.ContentRootPath, "MyStaticFiles")),
+            //    RequestPath = "/StaticFiles",
+            //    EnableDirectoryBrowsing = true
+            //});
             app.UseRouting();
 
             app.UseAuthorization();
