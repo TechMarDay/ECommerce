@@ -1,9 +1,9 @@
 ﻿@model ECommerce.Models.Product.ProductDetailModel
-
 @*@{
-    ViewData["Title"] = "Home Page";
-}*@
+        ViewData["Title"] = "Home Page";
+    }*@
 <link href="~/assets/css/productDetail.css" rel="stylesheet" />
+<link href="~/assets/css/responsive.css" rel="stylesheet" />
 <div class="app__container">
     <div class="grid wide">
         <section class="row bread-crumb-detail">
@@ -28,8 +28,30 @@
             <div class="details-product col l-12 m-12 c-12">
                 <div class="row">
                     <div class="col l-6 m-12 c-12 product-detail-image-block">
-                        <img src="~/@Model.ThumbnailImage"
-                             alt="product detail" class="product-detail-image">
+                        <div class="row">
+                            <img src="~/@Model.ThumbnailImage"
+                                 alt="product detail" class="product-detail-image" id="product-detail-image">
+                        </div>
+                        <div class="row slide-wrapper">
+                            <div class="product-detail-slider">
+                                <div class="product-detail-slider-item product-detail-slider-active">
+                                    <img src="~/assets/img/slider1.jpg"
+                                         alt="product detail" class="product-detail-slider-item__img">
+                                </div>
+                                <div class="product-detail-slider-item">
+                                    <img src="~/assets/img/slider2.jpg"
+                                         alt="product detail" class="product-detail-slider-item__img">
+                                </div>
+                                <div class="product-detail-slider-item">
+                                    <img src="~/assets/img/slider3.jpg"
+                                         alt="product detail" class="product-detail-slider-item__img">
+                                </div>
+                                <div class="product-detail-slider-item">
+                                    <img src="~/assets/img/slider4.jpg"
+                                         alt="product detail" class="product-detail-slider-item__img">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col l-6 m-12 c-12 product-detail-informations">
@@ -75,7 +97,12 @@
 
                         <div class="form-product-detail">
                             <form action="" class="form-product-detail">
-                                <label for="" class="product-detail-quantity">Số lượng: 10</label>
+                                <label for="" class="product-detail-quantity">Số lượng</label>
+                                <div class="custom custom-btn-numbers form-control">
+                                    <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty) &amp; qty > 1 ) result.value--;return false;" class="btn-minus btn-cts" type="button">–</button>
+                                    <input type="text" class="qty input-text" id="qty" name="quantity" size="4" value="1" maxlength="3">
+                                    <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" class="btn-plus btn-cts" type="button">+</button>
+                                </div>
                                 <a class="btn btn-product-buy" href="https://www.facebook.com/gchillbra">
                                     <span class="btn-buy-text">Đặt mua giao hàng tận nơi</span>
                                 </a>
@@ -169,10 +196,13 @@
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/ckeditor/ckeditor.js"></script>
     <script src="~/ckeditor/adapters/jquery.js"></script>
-    <script type="text/javascript">
-        $(function () {
+    @*<script type="text/javascript">
             $(function () {
-                hljs.initHighlightingOnLoad();
+                $(function () {
+                    hljs.initHighlightingOnLoad();
+                })
             });
-    </script>
+        </script>*@
+
+    <script src="~/assets/Jquery/productDetail.js"></script>
 }

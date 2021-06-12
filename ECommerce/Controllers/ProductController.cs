@@ -67,7 +67,7 @@ namespace ECommerce.Controllers
 
             ViewBag.Title = productDetail.Name;
             if (productDetail.Description.Length > 50)
-                ViewBag.Description = productDetail.Description.Substring(0, 50);
+                ViewBag.Description = productDetail.Description?.Substring(0, 50);
             else
                 ViewBag.Description = productDetail.Description;
             ViewBag.DisplaySlider = false;

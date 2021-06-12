@@ -36,17 +36,17 @@
                                         @item.Name
                                     </h4>
                                     <div class="product-item__price">
-                                        <span class="product-item__price-current">@item.DiscountPrice.ToString("###,###,###") vnđ</span>
+                                        <span class="product-item__price-current">@item.DiscountPrice?.ToString("###,###,###") vnđ</span>
                                         @if (item.Discount != null && item.Discount > 0)
                                         {
-                                            <span class="product-item__price-old">@item.Price.ToString("###,###,###")</span>
+                                            <span class="product-item__price-old">@item.Price?.ToString("###,###,###")</span>
 
                                         }
                                     </div>
                                     @if (item.Discount != null && item.Discount > 0)
                                     {
                                         <div class="product-item__sale-off">
-                                            <span class="product-item__sale-off-percent">-@item.Discount%</span>
+                                            <span class="product-item__sale-off-percent">-@item.Discount %</span>
                                         </div>
                                     }
                                 </a>
@@ -124,7 +124,7 @@
             <div class="col l-12 m-12 c-12">
                 <div class="news-section">
                     <h3 class="news-section-label">
-                        <a href="/tintuc.html" class="news-section__link">Tin thời trang</a>
+                        <a href="/tintuc.html" class="news-section__link">Blog</a>
                     </h3>
                 </div>
                 <div class="news">

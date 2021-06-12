@@ -28,8 +28,7 @@
     }
 
     .product-section-label {
-        font-size: 20px;
-        line-height: 20px;
+        font-size: 32px;
     }
 
     .product-detail-header {
@@ -47,5 +46,23 @@
     .news-detail img {
         max-width: 200px !important;
         height: auto !important;
+    }
+
+    .slide-wrapper {
+        max-width: 500px;
+        flex-wrap: nowrap;
+    }
+
+    .product-detail-slider-item__img {
+        max-width: 90px;
+        max-height: 72px;
+    }
+
+    .product-detail-slider-item {
+        max-height: 72px;
+    }
+
+    .product-detail-slider-item__img {
+        max-height: 70px;
     }
 }
