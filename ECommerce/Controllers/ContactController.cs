@@ -13,6 +13,7 @@ namespace ECommerce.Controllers
         {
             ViewBag.Title = "Gchill";
             ViewBag.Description = "Gchill nơi có mọi thứ bạn cần, hãy để chúng tôi phục vụ bạn";
+            ViewBag.DisplaySlider = false;
             return View();
         }
     }

@@ -6,19 +6,19 @@
         <div class="col l-12 m-12 c-12">
             <div class="product-section">
                 <h3 class="product-section-label">
-                    <a href="/sanpham.html" class="product-section__link">Thời trang</a>
+                    <a href="/sanpham.html" class="product-section__link">Sản phẩm bán chạy</a>
                 </h3>
-                <ul class="product-section__list hide-on-mobile-tablet">
-                    <li class="product-section-item ">
-                        <a href="/sanpham.html" class="product-section-item__link product-section-item__link-active">Túi crossbody</a>
-                    </li>
-                    <li class="product-section-item">
-                        <a href="/sanpham.html" class="product-section-item__link">Túi ly hợp buổi tối</a>
-                    </li>
-                    <li class="product-section-item">
-                        <a href="/sanpham.html" class="product-section-item__link">Ví tiền</a>
-                    </li>
-                </ul>
+                @*<ul class="product-section__list hide-on-mobile-tablet">
+                <li class="product-section-item ">
+                    <a href="/sanpham.html" class="product-section-item__link product-section-item__link-active">Túi crossbody</a>
+                </li>
+                <li class="product-section-item">
+                    <a href="/sanpham.html" class="product-section-item__link">Túi ly hợp buổi tối</a>
+                </li>
+                <li class="product-section-item">
+                    <a href="/sanpham.html" class="product-section-item__link">Ví tiền</a>
+                </li>
+            </ul>*@
             </div>
 
             <div class="product">
@@ -36,19 +36,17 @@
                                         @item.Name
                                     </h4>
                                     <div class="product-item__price">
-                                        <span class="product-item__price-current">@item.Price.ToString("###,###,###") vnđ</span>
+                                        <span class="product-item__price-current">@item.DiscountPrice.ToString("###,###,###") vnđ</span>
                                         @if (item.Discount != null && item.Discount > 0)
                                         {
-                                            <span class="product-item__price-old">@item.DiscountPrice.ToString("###,###,###")</span>
+                                            <span class="product-item__price-old">@item.Price.ToString("###,###,###")</span>
 
                                         }
                                     </div>
                                     @if (item.Discount != null && item.Discount > 0)
                                     {
                                         <div class="product-item__sale-off">
-
-                                            <span class="product-item__sale-off-percent">@item.Discount %</span>
-                                            <span class="product-item__sale-off-lable">GIẢM</span>
+                                            <span class="product-item__sale-off-percent">-@item.Discount%</span>
                                         </div>
                                     }
                                 </a>
@@ -68,7 +66,7 @@
 </div> -->
 
 <div class="grid wide">
-    <div class="row app__content">
+    <!--<div class="row app__content">
         <div class="col l-12 m-12 c-12">
             <div class="product-section">
                 <h3 class="product-section-label">
@@ -88,9 +86,9 @@
             </div>
 
             <div class="product">
-                <div class="row sm-gutter product-item-wrapper">
+                <div class="row sm-gutter product-item-wrapper">-->
                     <!-- Product item -->
-                    @if (ViewBag.BetsellerProducts != null && ViewBag.BetsellerProducts.Count > 0)
+                    <!--@if (ViewBag.BetsellerProducts != null && ViewBag.BetsellerProducts.Count > 0)
                     {
                         @foreach (var item in ViewBag.BetsellerProducts)
                         {
@@ -120,7 +118,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="grid wide">
         <div class="row app__content">
             <div class="col l-12 m-12 c-12">
