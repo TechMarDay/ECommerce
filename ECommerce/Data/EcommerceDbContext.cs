@@ -1,4 +1,5 @@
 ﻿using ECommerce.Entities;
+using ECommerce.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using static ECommerce.Models.ProductCategoryEnum;
@@ -17,6 +18,8 @@ namespace ECommerce.Data
 
         public DbSet<NewsEntity> News { get; set; }
 
+        public DbSet<AttachmentEntity> Attachments { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategoryEntity>(entity =>
@@ -29,6 +32,16 @@ namespace ECommerce.Data
                         c => (ProductCategoryType)Enum.Parse(typeof(ProductCategoryType), c));
                  });
 
+            modelBuilder.Entity<AttachmentEntity>(entity =>
+            {
+                entity.Property(e => e.ProductId).IsRequired();
+                entity.Property(e => e.Image).IsRequired();
+                entity.Property(e => e.RefId).IsRequired()
+                        .HasConversion(
+                        c => c.ToString(),
+                        c => (AttachmentRefEnum.RefId)Enum.Parse(typeof(AttachmentRefEnum.RefId), c));
+            });
+
             modelBuilder.Entity<ProductEntity>(entity =>
             {
                 entity.HasIndex(e => e.CategoryId);
@@ -36,8 +49,6 @@ namespace ECommerce.Data
                 entity.Property(e => e.Name).IsRequired();
 
                 entity.Property(e => e.CategoryId).IsRequired();
-
-                entity.Property(e => e.Image).IsRequired();
 
                 entity.Property(e => e.Price).IsRequired()
                 .HasColumnType("decimal(18,2)");

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace ECommerce.Models.Product
 {
@@ -9,6 +10,8 @@ namespace ECommerce.Models.Product
         public string Description { get; set; }
 
         public int CategoryId { get; set; }
+
+        public List<IFormFile> ThumbnailImages { get; set; }
 
         public IFormFile ThumbnailImage { get; set; }
 

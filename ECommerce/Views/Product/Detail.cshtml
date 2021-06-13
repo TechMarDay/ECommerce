@@ -34,22 +34,40 @@
                         </div>
                         <div class="row slide-wrapper">
                             <div class="product-detail-slider">
-                                <div class="product-detail-slider-item product-detail-slider-active">
-                                    <img src="~/assets/img/slider1.jpg"
-                                         alt="product detail" class="product-detail-slider-item__img">
-                                </div>
-                                <div class="product-detail-slider-item">
-                                    <img src="~/assets/img/slider2.jpg"
-                                         alt="product detail" class="product-detail-slider-item__img">
-                                </div>
-                                <div class="product-detail-slider-item">
-                                    <img src="~/assets/img/slider3.jpg"
-                                         alt="product detail" class="product-detail-slider-item__img">
-                                </div>
-                                <div class="product-detail-slider-item">
-                                    <img src="~/assets/img/slider4.jpg"
-                                         alt="product detail" class="product-detail-slider-item__img">
-                                </div>
+                                @if (ViewBag.sliderProductImages != null && ViewBag.sliderProductImages.Count > 0)
+                                {
+                                    var index = 0;
+                                    @foreach (var item in ViewBag.sliderProductImages)
+                                    {
+                                        if (index == 0)
+                                        {
+                                            <div class="product-detail-slider-item product-detail-slider-active">
+                                                <img src="~/@item"
+                                                     alt="product detail" class="product-detail-slider-item__img">
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="product-detail-slider-item">
+                                                <img src="~/@item"
+                                                     alt="product detail" class="product-detail-slider-item__img">
+                                            </div>
+                                        }
+                                        index++;
+                                    }
+                                }
+                                @*<div class="product-detail-slider-item">
+                                        <img src="~/assets/img/slider2.jpg"
+                                             alt="product detail" class="product-detail-slider-item__img">
+                                    </div>
+                                    <div class="product-detail-slider-item">
+                                        <img src="~/assets/img/slider3.jpg"
+                                             alt="product detail" class="product-detail-slider-item__img">
+                                    </div>
+                                    <div class="product-detail-slider-item">
+                                        <img src="~/assets/img/slider4.jpg"
+                                             alt="product detail" class="product-detail-slider-item__img">
+                                    </div>*@
                             </div>
                         </div>
                     </div>

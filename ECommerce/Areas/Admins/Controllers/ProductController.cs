@@ -38,7 +38,7 @@ namespace ECommerce.Areas.Admins.Controllers
             var productsQuery = from p in dbContext.Products
                                 join c in dbContext.ProductCategories
                                      on p.CategoryId equals c.Id
-                                     orderby p.CreationTime descending
+                                orderby p.CreationTime descending
                                 select new ProductViewModel
                                 {
                                     Id = p.Id,
@@ -74,7 +74,7 @@ namespace ECommerce.Areas.Admins.Controllers
         {
             //Validate
             var hasError = false;
-            if (model.ThumbnailImage == null)
+            if (model.ThumbnailImages == null ||  !model.ThumbnailImages.Any() || model.ThumbnailImage == null)
             {
                 hasError = true;
                 ViewBag.Error += "Vui lòng chọn hình ảnh";
@@ -130,15 +130,33 @@ namespace ECommerce.Areas.Admins.Controllers
                     CreationTime = DateTime.UtcNow,
                     Url = model.Url
                 };
+                dbContext.Add(product);
 
-                if (model.ThumbnailImage != null)
+                if(model.ThumbnailImage != null)
                 {
                     var thumbnailImageUrl = await storageService.SaveFileAsync(model.ThumbnailImage,
-                        UploadPathConstant.ProductPath);
+                            UploadPathConstant.ProductPath);
                     product.Image = thumbnailImageUrl;
                 }
+                await dbContext.SaveChangesAsync();
 
-                dbContext.Add(product);
+                if (model.ThumbnailImages != null && model.ThumbnailImages.Any())
+                {
+                    for (var index = 0; index < model.ThumbnailImages.Count; index++)
+                    {
+                        var thumbnailImageUrl = await storageService.SaveFileAsync(model.ThumbnailImages[index],
+                            UploadPathConstant.ProductPath);
+                        var attachment = new AttachmentEntity
+                        {
+                            Image = thumbnailImageUrl,
+                            RefId = Models.AttachmentRefEnum.RefId.ProductImage,
+                            CreationTime = DateTime.UtcNow,
+                            ProductId = product.Id
+                        };
+                        dbContext.Add(attachment);
+                    }
+                }
+                
                 await dbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -248,6 +266,24 @@ namespace ECommerce.Areas.Admins.Controllers
 
             dbContext.Update(product);
 
+            await dbContext.SaveChangesAsync();
+
+            if (productModel.ThumbnailImages != null && productModel.ThumbnailImages.Any())
+            {
+                for (var index = 0; index < productModel.ThumbnailImages.Count; index++)
+                {
+                    var thumbnailImageUrl = await storageService.SaveFileAsync(productModel.ThumbnailImages[index],
+                        UploadPathConstant.ProductPath);
+                    var attachment = new AttachmentEntity
+                    {
+                        Image = thumbnailImageUrl,
+                        RefId = Models.AttachmentRefEnum.RefId.ProductImage,
+                        CreationTime = DateTime.UtcNow,
+                        ProductId = product.Id
+                    };
+                    dbContext.Add(attachment);
+                }
+            }
             await dbContext.SaveChangesAsync();
             return RedirectToAction("edit", new { id = productModel.Id });
         }

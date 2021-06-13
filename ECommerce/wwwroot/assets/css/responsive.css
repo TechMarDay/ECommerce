@@ -28,7 +28,11 @@
     }
 
     .product-section-label {
-        font-size: 32px;
+        font-size: 25px;
+    }
+
+    .news-section-label {
+        font-size: 25px;
     }
 
     .product-detail-header {
@@ -64,5 +68,14 @@
 
     .product-detail-slider-item__img {
         max-height: 70px;
+    }
+
+    .news-item {
+        padding-left: 10px;
+    }
+
+    .product-description img {
+        max-width: 300px;
+        height:auto;
     }
 }

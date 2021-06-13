@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace ECommerce.Models.Product
 {
@@ -13,6 +14,8 @@ namespace ECommerce.Models.Product
         public int CategoryId { get; set; }
 
         public IFormFile ThumbnailImage { get; set; }
+
+        public List<IFormFile> ThumbnailImages { get; set; }
 
         public decimal Price { get; set; }
 

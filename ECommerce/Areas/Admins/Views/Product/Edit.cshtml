@@ -42,8 +42,12 @@
 
     </div>
     <div class="product-field">
-        <label class="product-field-label">Hình ảnh<span class="mandatory">*</span></label>
+        <label class="product-field-label">Hình ảnh chính<span class="mandatory">*</span></label>
         <input type="file" asp-for="ThumbnailImage" name="ThumbnailImage" class="input product-field-value" />
+    </div>
+    <div class="product-field">
+        <label class="product-field-label">Hình ảnh phụ<span class="mandatory">*</span></label>
+        <input type="file" asp-for="ThumbnailImages" name="ThumbnailImages" class="input product-field-value" multiple />
     </div>
     <div class="product-field">
         <label class="product-field-label"></span></label>

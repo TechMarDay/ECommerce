@@ -49,6 +49,11 @@ namespace ECommerce.Controllers
 
             var productDetail = await productsQuery.FirstOrDefaultAsync();
 
+            var sliderProductImages = from a in dbContext.Attachments
+                                      where a.ProductId == productDetail.Id
+                                      select a.Image;
+            ViewBag.sliderProductImages = await sliderProductImages.Take(4).ToListAsync();
+
             var relatedProductsQuery = from p in dbContext.Products
                                 orderby p.CreationTime descending
                                 select new ProductViewModel
