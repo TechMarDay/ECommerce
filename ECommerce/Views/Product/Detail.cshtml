@@ -85,15 +85,20 @@
 
                         <div class="product-detail-prices">
                             <div class="product-detail-price">
-                                <span class="real-price">@Model.Price.ToString("###,###,###") vnđ </span>
                                 @if (Model.Discount != null && Model.Discount > 0)
                                 {
+                                    <span class="real-price">@Model.DiscountPrice?.ToString("###,###,###") vnđ </span>
                                     <span class="old-price">
                                         Giá thị trường:
                                         <span class="product-price-old">
-                                            @Model.DiscountPrice?.ToString("###,###,###") vnđ
+                                            @Model.Price.ToString("###,###,###") vnđ
                                         </span>
                                     </span>
+                                }
+                                else
+                                {
+                                    <span class="real-price">@Model.Price.ToString("###,###,###") vnđ </span>
+
                                 }
                             </div>
                             @if (Model.Discount != null && Model.Discount > 0)
@@ -121,10 +126,16 @@
                                     <input type="text" class="qty input-text" id="qty" name="quantity" size="4" value="1" maxlength="3">
                                     <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" class="btn-plus btn-cts" type="button">+</button>
                                 </div>
-                                <a class="btn btn-product-buy" href="https://www.facebook.com/gchillbra">
-                                    <span class="btn-buy-text">Đặt mua giao hàng tận nơi</span>
-                                </a>
+                                @*<a class="btn btn-product-buy" href="https://www.facebook.com/gchillbra">
+                    <span class="btn-buy-text">Đặt mua giao hàng tận nơi</span>
+                </a>*@
                             </form>
+                        </div>
+
+                        @*<i class="fa fa-shopping-cart"></i>*@
+                        <div class="buy-wrapper">
+                            <a class="btn btn-add-cart-detail" href="#" data-id="@Model.Id">Thêm vào giỏ hàng</a>
+                            <a class="btn btn-buy-detail" href="#" data-id="@Model.Id">Mua ngay với 1 click</a>
                         </div>
 
                         <div class="call-and-payment">

@@ -7,6 +7,6 @@ namespace ECommerce.Services
     {
         Task<string> SaveFileAsync(IFormFile file, string filePath);
 
-        Task DeleteFileAsync(string fileName, string filePath);
+        Task DeleteFileAsync(string filePath);
     }
 }

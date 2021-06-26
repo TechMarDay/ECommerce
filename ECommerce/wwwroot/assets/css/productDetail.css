@@ -166,6 +166,7 @@
 
 .form-product-detail {
     margin-top: 10px;
+    min-height:60px;
 }
 
 .product-detail-quantity {
@@ -187,7 +188,7 @@
 }
 
 .call-and-payment {
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 5px 0 0;
     display: block;
     border-top: 1px solid #e5e5e5;
@@ -282,4 +283,20 @@
     width: auto;
     background-color: transparent;
     height: auto;
+}
+
+.btn-add-cart-detail {
+    background-color: #39781D;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.btn-buy-detail {
+    background-color: #FF0000;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    text-transform: uppercase;
 }

@@ -1,0 +1,83 @@
+﻿@section scripts{
+    <script src="~/assets/Jquery/cart.js"></script>
+
+    <script>
+        var cartController = new cartController();
+        cartController.initialize();
+    </script>
+}
+
+<link href="./assets/css/cart.css" rel="stylesheet" />
+<link href="~/assets/css/responsive.css" rel="stylesheet" />
+<div id="cart_wrapper">
+    <div class="app__container">
+        <div class="grid wide">
+            <section class="row bread-crumb-detail">
+                <div class="col l-12 m-12 c-12">
+                    <ul class="bread-crumb-detail-list">
+                        <li class="bread-crumb-detail-item">
+                            <a href="/" class="bread-crumb-detail__link">Trang chủ</a>
+                            <i class="fa fa-angle-right bread-crumb-detail__icon"></i>
+                        </li>
+                        <li class="bread-crumb-detail-item">
+                            <a href="#" class="bread-crumb-detail__link">Giỏ hàng</a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <div class="cart_content">
+                <section class="cart row">
+                    <div class="cart col l-12 m-12 c-12">
+                        <h3>
+                            Giỏ hàng [<small><span id="number_order"></span> sản phẩm</small>]
+                        </h3>
+                        @* Link contiune shopping *@
+
+                        <div class="btn-cart-checkout">
+                            <a class="btn btn-continue-shopping" href="/">Tiếp tục mua sắm</a>
+                            <a class="btn btn-order-now" href="/giohang/dathang">Đặt hàng</a>
+                        </div>
+                        @* List product *@
+                        <table class="cart-product-list">
+                            <thead>
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Hinh ảnh</th>
+                                    <th>Giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng cộng</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart_body">
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td>Tổng tiền: <span id="total_order">xxx</span> vnđ</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </section>
+
+                <div class="btn-cart-checkout">
+                    <a class="btn btn-continue-shopping" href="/">Tiếp tục mua sắm</a>
+                    <a class="btn btn-order-now" href="/giohang/dathang">Đặt hàng</a>
+                </div>
+            </div>
+
+            <div class="cart_empty">
+                <section class="cart row">
+                    <div class="cart col l-12 m-12 c-12 cart_empty_wrapper">
+                        <img src="~/assets/img/EmptyCart.png" class="cart_empty_image"/>
+                        <span class="cart_empty_lbl">Giỏ hàng của bạn còn trống</span>
+                    </div>
+                </section>
+            </div>
+    </div>
+</div>

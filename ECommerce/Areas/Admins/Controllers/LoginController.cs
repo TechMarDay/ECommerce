@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 namespace ECommerce.Areas.Admins.Controllers
 {
     [Area("Admins")]
+    [Route("admins/login")]
     public class LoginController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
 
-        [HttpGet("test")]
-        public IActionResult Test()
+        [HttpGet]
+        public IActionResult Index()
         {
             return Ok();
         }

@@ -1,8 +1,9 @@
 ﻿@model ECommerce.Models.Common.Pagination<ECommerce.Models.Product.ProductViewModel>
 @*@{
-    ViewData["Title"] = "Home Page";
-}*@
+        ViewData["Title"] = "Home Page";
+    }*@
 <link href="~/assets/css/productList.css" rel="stylesheet" />
+<script src="~/assets/Jquery/ProductList.js"></script>
 <div class="grid wide">
     <section class="row bread-crumb-detail">
         <div class="col l-12 m-12 c-12">
@@ -41,15 +42,15 @@
                             <label href="#" title="Tên A-Z" class="sort-product-left-item__link" for="AZName">Tên A-Z</label>
                         </li>
                         <li class="sort-product-left-item">
-                            <input type="radio" id="ZAName" name="filterProduct" value="ZAName"  class="sort-product-left-item__radio">
+                            <input type="radio" id="ZAName" name="filterProduct" value="ZAName" class="sort-product-left-item__radio">
                             <label href="#" title="Tên Z-A" class="sort-product-left-item__link" for="ZAName">Tên Z-A</label>
                         </li>
                         <li class="sort-product-left-item">
-                            <input type="radio" id="priceAsc" name="filterProduct" value="priceAsc"  class="sort-product-left-item__radio">
+                            <input type="radio" id="priceAsc" name="filterProduct" value="priceAsc" class="sort-product-left-item__radio">
                             <label href="#" title="Giá thấp đến cao" class="sort-product-left-item__link" for="priceAsc">Giá thấp đến cao</label>
                         </li>
                         <li class="sort-product-left-item">
-                            <input type="radio" id="priceDec" name="filterProduct" value="priceDec"  class="sort-product-left-item__radio">
+                            <input type="radio" id="priceDec" name="filterProduct" value="priceDec" class="sort-product-left-item__radio">
                             <label href="#" title="Giá cao xuống thấp" class="sort-product-left-item__link" for="priceDec">Giá cao xuống thấp</label>
                         </li>
                     </ul>
@@ -67,30 +68,34 @@
                     {
                         @foreach (var item in Model.Items)
                         {
-                            <div class="col l-2-4 m-4 c-6 ">
-                                <a href="~/@item.Url" class="product-item">
-                                    <div class="product-item__img" style="background-image: url(@item.ThumbnailImage);">
-                                    </div>
-                                    <h4 class="product-item__name">
-                                        @item.Name
-                                    </h4>
-                                    <div class="product-item__price">
-                                        <span class="product-item__price-current">@item.Price.ToString("###,###,###") vnđ</span>
-                                        @if (item.Discount != null && item.Discount > 0)
-                                        {
-                                            <span class="product-item__price-old">@item.DiscountPrice?.ToString("###,###,###")</span>
-                                        }
-                                    </div>
+                    <div class="col l-2-4 m-4 c-6 ">
+                        <div class="product-item-car-wrapper">
+                            <a href="~/@item.Url" class="product-item">
+                                <div class="product-item__img" style="background-image: url(@item.ThumbnailImage);">
+                                </div>
+                                <h4 class="product-item__name">
+                                    @item.Name
+                                </h4>
+                                <div class="product-item__price">
+                                    <span class="product-item__price-current">@item.Price.ToString("###,###,###") vnđ</span>
                                     @if (item.Discount != null && item.Discount > 0)
                                     {
-                                        <div class="product-item__sale-off">
-
-                                            <span class="product-item__sale-off-percent">@item.Discount %</span>
-                                            <span class="product-item__sale-off-lable">GIẢM</span>
-                                        </div>
+                                        <span class="product-item__price-old">@item.DiscountPrice?.ToString("###,###,###")</span>
                                     }
-                                </a>
-                            </div>
+                                </div>
+                                @if (item.Discount != null && item.Discount > 0)
+                                {
+                                    <div class="product-item__sale-off">
+
+                                        <span class="product-item__sale-off-percent">@item.Discount %</span>
+                                        <span class="product-item__sale-off-lable">GIẢM</span>
+                                    </div>
+                                }
+                            </a>
+                            @*<a class="btn btn-add-cart" href="#" data-id="@item.Id">Thêm vào <i class="fa fa-shopping-cart"></i></a>
+                            <a class="btn btn-sale-now" href="#" data-id="@item.Id">Mua ngay</a>*@
+                        </div>
+                    </div>
                         }
                     }
                 </div>
@@ -98,7 +103,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row pagination-wrapper">
         <div class="col l-12 m-12 c-12">
             <ul class="pagination">
                 @for (var i = 1; i <= Model.TotalPages; i++)
@@ -110,4 +115,15 @@
             </ul>
         </div>
     </div>
+
+    <script>
+        //var productItems = document.querySelectorAll('.product-item');
+        //for (var index = 0; index < productItems.length; index++) {
+        //    productItems[index].addEventListener('mouseover', function (e) {
+        //        debugger;
+        //        var addCartButton = e.target.classList('.btn-add-c');
+        //        addCartButton.classList.add('display');
+        //    })
+        //}
+    </script>
 </div>

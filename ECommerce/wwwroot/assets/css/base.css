@@ -59,6 +59,13 @@ body {
     background-color: var(--primary-color);
 }
 
+
+.btn-primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
 .btn.btn--disabled {
     color: #949494;
     cursor: default;

@@ -11,6 +11,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using static ECommerce.Models.AttachmentRefEnum;
 
 namespace ECommerce.Areas.Admins.Controllers
 {
@@ -259,6 +260,7 @@ namespace ECommerce.Areas.Admins.Controllers
 
             if (productModel.ThumbnailImage != null)
             {
+                await storageService.DeleteFileAsync(product.Image);
                 var thumbnailImageUrl = await storageService.SaveFileAsync(productModel.ThumbnailImage,
                     UploadPathConstant.ProductPath);
                 product.Image = thumbnailImageUrl;
@@ -270,6 +272,17 @@ namespace ECommerce.Areas.Admins.Controllers
 
             if (productModel.ThumbnailImages != null && productModel.ThumbnailImages.Any())
             {
+                var attachments = await dbContext.Attachments.Where(x => x.RefId == RefId.ProductImage
+                && x.ProductId == product.Id).ToListAsync();
+
+                foreach(var attachment in attachments)
+                {
+                    await storageService.DeleteFileAsync(attachment.Image);
+                }
+
+                dbContext.Attachments.RemoveRange(attachments);
+                await dbContext.SaveChangesAsync();
+
                 for (var index = 0; index < productModel.ThumbnailImages.Count; index++)
                 {
                     var thumbnailImageUrl = await storageService.SaveFileAsync(productModel.ThumbnailImages[index],
@@ -294,7 +307,17 @@ namespace ECommerce.Areas.Admins.Controllers
         public async Task<IActionResult> DeleteAsync(int? id)
         {
             var product = await dbContext.Products.FindAsync(id);
+            var attachments = await dbContext.Attachments.Where(x => x.RefId == RefId.ProductImage
+             && x.ProductId == product.Id).ToListAsync();
+
+            foreach (var attachment in attachments)
+            {
+                await storageService.DeleteFileAsync(attachment.Image);
+            }
+
+            await storageService.DeleteFileAsync(product.Image);
             dbContext.Products.Remove(product);
+            dbContext.Attachments.RemoveRange(attachments);
             await dbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }

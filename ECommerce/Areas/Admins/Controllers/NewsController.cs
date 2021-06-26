@@ -97,7 +97,7 @@ namespace ECommerce.Areas.Admins.Controllers
 
             if (ModelState.IsValid)
             {
-                var product = new NewsEntity
+                var news = new NewsEntity
                 {
                     Title = model.Title,
                     Summary = model.Summary,
@@ -110,10 +110,10 @@ namespace ECommerce.Areas.Admins.Controllers
                 {
                     var thumbnailImageUrl = await storageService.SaveFileAsync(model.Image,
                         UploadPathConstant.NewsPath);
-                    product.Image = thumbnailImageUrl;
+                    news.Image = thumbnailImageUrl;
                 }
 
-                dbContext.Add(product);
+                dbContext.Add(news);
                 await dbContext.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -188,6 +188,7 @@ namespace ECommerce.Areas.Admins.Controllers
 
             if (newsModel.Image != null)
             {
+                await storageService.DeleteFileAsync(news.Image);
                 var thumbnailImageUrl = await storageService.SaveFileAsync(newsModel.Image,
                     UploadPathConstant.NewsPath);
                 news.Image = thumbnailImageUrl;
@@ -206,6 +207,7 @@ namespace ECommerce.Areas.Admins.Controllers
         {
             var news = await dbContext.News.FindAsync(id);
             dbContext.News.Remove(news);
+            await storageService.DeleteFileAsync(news.Image);
             await dbContext.SaveChangesAsync();
             return RedirectToAction("Index");
         }

@@ -18,12 +18,13 @@ namespace ECommerce.Services
             this.hostingEnvironment = hostingEnvironment;
         }
 
-        public async Task DeleteFileAsync(string fileName, string filePath)
+        public async Task DeleteFileAsync(string filePath)
         {
-            var path = Path.Combine(Directory.GetCurrentDirectory(), hostingEnvironment.WebRootPath, filePath, fileName);
-            if (File.Exists(filePath))
+            var path = Path.Combine(Directory.GetCurrentDirectory(), hostingEnvironment.WebRootPath, filePath);
+
+            if (File.Exists(path))
             {
-                await Task.Run(() => File.Delete(filePath));
+                await Task.Run(() => File.Delete(path));
             }
         }
 
@@ -31,8 +32,14 @@ namespace ECommerce.Services
         {
             var fileNameUnique = DateTime.Now.ToString("yyyyMMddHHmmss") + file.FileName?.Replace(" ", string.Empty);
             var path = Path.Combine(Directory.GetCurrentDirectory(), hostingEnvironment.WebRootPath, filePath, fileNameUnique);
-            var stream = new FileStream(path, FileMode.Create);
-            await file.CopyToAsync(stream);
+            //var stream = new FileStream(path, FileMode.Create);
+            //await file.CopyToAsync(stream);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                // Use stream
+                await file.CopyToAsync(stream);
+            }
 
             return filePath + fileNameUnique;
         }

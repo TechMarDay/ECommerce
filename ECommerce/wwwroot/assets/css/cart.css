@@ -1,0 +1,117 @@
+﻿/* bread-crumb-detail */
+
+.bread-crumb-detail-list {
+    list-style: none;
+    padding: 10px 8px;
+    border-bottom: 1px solid #f5f5f5;
+    border-top: 1px solid #f5f5f5;
+    margin: 0;
+    background-color: #F5F4F9;
+}
+
+.bread-crumb-detail-item {
+    display: inline;
+}
+
+.bread-crumb-detail__link {
+    text-decoration: none;
+    color: var(--black-color);
+    font-size: 14px;
+    margin-right: 4px;
+}
+
+    .bread-crumb-detail__link:hover {
+        color: var(--primary-color);
+    }
+
+    .bread-crumb-detail__link:last-child {
+        color: var(--primary-color);
+    }
+
+.bread-crumb-detail__icon {
+    color: var(--black-color);
+    margin-right: 4px;
+    font-size: 14px;
+}
+
+
+.btn-cart-checkout {
+    margin: 30px 0;
+    background-color: #F5F4F9;
+}
+
+.btn-continue-shopping {
+    border: 1px solid #45a91a;
+    color: #45a91a;
+    padding: 6px 8px;
+    font-size: 13px;
+    border-radius: 4px;
+    text-transform:uppercase;
+}
+
+.btn-order-now {
+    background-color: #48a51f;
+    color: #fff;
+    padding: 6px 8px;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.cart-product-list {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    .cart-product-list th, td {
+        border: 1px solid #edf2f5;
+        text-align: left;
+        padding: 10px 5px;
+    }
+
+    .cart-product-list th {
+        color: #404040;
+        font-weight: bold;
+        padding: 12px;
+        line-height: normal;
+    }
+
+.btn_plus_cart {
+    width: 40px;
+    line-height: 18px;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #bcceda;
+}
+
+.btn_minus_cart {
+    width: 40px;
+    margin: 0 5px;
+    line-height: 18px;
+    cursor: pointer;
+    background: #fff;
+    border-radius: 3px;
+    border: 1px solid #bcceda;
+}
+
+.cart_quantity {
+    width: 40px;
+    padding: 4px 8px;
+    border: 2px solid #edf2f5;
+    border-width: 1px;
+    border-radius: 0;
+    outline: none;
+    background: #f7f7f7;
+}
+
+.btn_remove_cart {
+    width: 40px;
+    padding: 4px 8px;
+    border: 2px solid #e6b6b6;
+    border-width: 1px;
+    border-radius: 0;
+    outline: none;
+    color: #da8787;
+    cursor: pointer;
+    background: #fff;
+}

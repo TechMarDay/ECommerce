@@ -22,7 +22,7 @@ namespace ECommerce.Controllers
         [HttpGet("{url}")]
         public async Task<IActionResult> DetailAsync(string url)
         {
-            if (url == null)
+            if (url == null || url == "favicon.ico")
             {
                 return NotFound();
             }
@@ -49,10 +49,16 @@ namespace ECommerce.Controllers
 
             var productDetail = await productsQuery.FirstOrDefaultAsync();
 
+
+            if (productDetail == null)
+            {
+                return NotFound();
+            }
+
             var sliderProductImages = from a in dbContext.Attachments
                                       where a.ProductId == productDetail.Id
                                       select a.Image;
-            ViewBag.sliderProductImages = await sliderProductImages.Take(4).ToListAsync();
+            ViewBag.sliderProductImages = await sliderProductImages?.Take(4).ToListAsync();
 
             var relatedProductsQuery = from p in dbContext.Products
                                 orderby p.CreationTime descending
@@ -76,11 +82,6 @@ namespace ECommerce.Controllers
             else
                 ViewBag.Description = productDetail.Description;
             ViewBag.DisplaySlider = false;
-
-            if (productDetail == null)
-            {
-                return NotFound();
-            }
 
             return View(productDetail);
         }
