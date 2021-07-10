@@ -1,0 +1,70 @@
+﻿@model ECommerce.Models.Common.Pagination<ECommerce.Models.Order.OrderViewModel>
+@{
+    Layout = "~/Areas/Admins/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>Danh sách đơn hàng</h1>
+
+
+@if (Model.TotalRecords > 0)
+{
+    <div class="table">
+        <div class="table-header">
+            <div class="header__item">
+                Tên khách hàng
+            </div>
+            <div class="header__item">
+                Địa chỉ
+            </div>
+            <div class="header__item">
+                Ngày đặt hàng
+            </div>
+            <div class="header__item">
+                Số điện thoại
+            </div>
+            <div class="header__item">
+               Trạng thái
+            </div>
+            <div class="header__item"></div>
+        </div>
+        <div class="table-content">
+            @foreach (var item in Model.Items)
+            {
+            <div class="table-row">
+                <div class="table-data">
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </div>
+                <div class="table-data">
+                    @Html.DisplayFor(modelItem => item.Address)
+                </div>
+                <div class="table-data">
+                    @Html.DisplayFor(modelItem => item.OrderDate)
+                </div>
+                <div class="table-data">
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </div>
+                <div class="table-data">
+                    @Html.DisplayFor(modelItem => item.Status)
+                </div>
+                <div class="table-data">
+                     <a href="/admins/order/detail?id=@item.Id" class="btn">Chi tiết</a>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <ul class="pagination">
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                {
+                    <li class="pagination-item page-item @(i == Model.CurrentPage ? "pagination-item--active" : "")">
+                        <a asp-route-currentpage="@i" href="/admins/order?currentPage=@i" class="pagination-item-link page-link">@i</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+}

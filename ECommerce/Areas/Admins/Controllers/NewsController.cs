@@ -9,11 +9,13 @@ using ECommerce.Extension;
 using ECommerce.Entities;
 using System;
 using ECommerce.Constants;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ECommerce.Areas.Admins.Controllers
 {
     [Area("Admins")]
     [Route("admins/news")]
+    [Authorize(Roles = "Admin")]
     public class NewsController : Controller
     {
         private readonly EcommerceDbContext dbContext;

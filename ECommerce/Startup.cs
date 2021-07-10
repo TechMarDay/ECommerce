@@ -1,5 +1,6 @@
 using ECommerce.Data;
 using ECommerce.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.IO;
 
 namespace ECommerce
@@ -23,6 +25,24 @@ namespace ECommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(10);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+           .AddCookie(option =>
+           {
+               option.ExpireTimeSpan = TimeSpan.FromDays(1);
+               option.LoginPath = "/login";
+               option.AccessDeniedPath = "/login";
+           }
+        );
+
             services.AddCors();
 
             services.AddDbContext<EcommerceDbContext>(options =>
@@ -48,6 +68,8 @@ namespace ECommerce
                 app.UseHsts();
             }
 
+            app.UseSession();
+
             app.UseCors(builder => builder
                 .AllowAnyOrigin()
             .AllowAnyMethod()
@@ -68,13 +90,14 @@ namespace ECommerce
             //});
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "Areas",
-                    pattern: "{area:exists}/{controller=DashBoard}/{action=Index}");
+                    pattern: "{area:exists}/{controller=Login}/{action=Index}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

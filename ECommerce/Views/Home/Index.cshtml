@@ -39,11 +39,10 @@
                                             @item.Name
                                         </h4>
                                         <div class="product-item__price">
-                                            <span class="product-item__price-current">@item.DiscountPrice?.ToString("###,###,###") vnđ</span>
+                                            <span class="product-item__price-current">@item.Price.ToString("###,###,###") vnđ</span>
                                             @if (item.Discount != null && item.Discount > 0)
                                             {
-                                                <span class="product-item__price-old">@item.Price?.ToString("###,###,###")</span>
-
+                                                <span class="product-item__price-old">@item.DiscountPrice?.ToString("###,###,###")</span>
                                             }
                                         </div>
                                         @if (item.Discount != null && item.Discount > 0)

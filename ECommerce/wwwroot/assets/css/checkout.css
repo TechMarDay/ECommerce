@@ -145,3 +145,31 @@
     text-align:center;
     display: block;
 }
+
+
+.group-checkout {
+/*    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;*/
+    outline: none;
+    /*font-size: 1.4rem;*/
+}
+
+    .group-checkout:hover {
+        border-color: #1dbfaf;
+    }
+
+    .group-checkout.invalid .form-control {
+        border-color: #f33a58;
+    }
+
+    .group-checkout.invalid .form-message {
+        color: #f33a58;
+    }
+
+.form-message {
+    font-size: 14px;
+    line-height: 1.6rem;
+    padding: 4px 0 0;
+}

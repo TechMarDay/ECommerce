@@ -16,6 +16,15 @@ for (var i = 0; i < sliderLength; i++) {
     });
 }
 
+function showSuccessToast() {
+    toast({
+        title: 'Thành công',
+        message: 'Bạn đã thêm vào giỏ hàng thành công!',
+        type: 'success',
+        duration: 7000
+    });
+}
+
 
 $('body').on('click', '.btn-add-cart-detail', function (e) {
     e.preventDefault();
@@ -28,7 +37,8 @@ $('body').on('click', '.btn-add-cart-detail', function (e) {
         contentType: "application/json",
         success: function (res) {
             $('#number_cart_header').text(res.length);
-            alert("Bạn đã thêm vào giỏ hang thành công!")
+        /*alert("Bạn đã thêm vào giỏ hang thành công!")*/
+            showSuccessToast();
         },
         error: function (err) {
             console.log(err);

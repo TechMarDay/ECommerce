@@ -1,17 +1,15 @@
 ﻿@{
     Layout = "";
 }
+<link href="~/assets/css/login.css" rel="stylesheet" />
 
-<form method="post" enctype="multipart/form-data" action="FileUpload">
-    <div class="form-group">
-        <div class="col-md-10">
-            <p>Upload one or more files using this form:</p>
-            <input type="file" name="files" multiple />
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-10">
-            <input type="submit" value="Upload" />
-        </div>
-    </div>
+<form class="form-signin" action="/login">
+    <h1 class="h3 mb-3 font-weight-normal">Vui lòng đăng nhập</h1>
+    <label for="inputEmail" class="sr-only">Tài khoản</label>
+    <input type="text" id="username" name="username" class="form-control input-username" placeholder="User Name" required autofocus>
+    <br />
+    <label for="inputPassword" class="sr-only">Mật khẩu</label>
+    <input type="password" id="password" name="password" class="form-control input-password" placeholder="Password" required>
+    <br />
+    <button class="btn btn-lg btn-primary btn-login" type="submit">Đăng nhập</button>
 </form>

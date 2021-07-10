@@ -10,5 +10,14 @@ namespace ECommerce.Models.Cart
         public List<CartItemViewModel> CartItems { get; set; }
 
         public CheckoutRequest CheckoutModel { get; set; } = new CheckoutRequest();
+
+
+        public string Name { get; set; }
+
+        public string Address { get; set; }
+
+        public string Email { get; set; }
+
+        public string PhoneNumber { get; set; }
     }
 }

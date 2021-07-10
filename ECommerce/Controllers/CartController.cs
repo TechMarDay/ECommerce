@@ -1,10 +1,12 @@
 ﻿using ECommerce.Constants;
 using ECommerce.Data;
+using ECommerce.Entities;
 using ECommerce.Models.Cart;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -109,29 +111,58 @@ namespace ECommerce.Controllers
 
         [HttpPost]
         [Route("dathang")]
-        public IActionResult Checkout(CheckoutViewModel request)
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> CheckoutAsync([FromForm] CheckoutViewModel request)
         {
             var checkoutVm = GetCheckoutViewModel();
-            var oderDeatails = new List<OderDetailVm>();
-            foreach(var item in checkoutVm.CartItems)
-            {
-                oderDeatails.Add(new OderDetailVm
-                {
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity
-                });
-            }
+            //var oderDeatails = new List<OderDetailVm>();
+            var orderDetailEntities = new List<OrderDetailEntity>();
+            //foreach(var item in checkoutVm.CartItems)
+            //{
+            //    oderDeatails.Add(new OderDetailVm
+            //    {
+            //        ProductId = item.ProductId,
+            //        Quantity = item.Quantity,
+            //        Price = item.Price
+            //    });
+            //}
 
             var checkoutRequest = new CheckoutRequest()
             {
-                Address = request.CheckoutModel.Address,
-                Name = request.CheckoutModel.Name,
-                Email = request.CheckoutModel.Email,
-                PhoneNumber = request.CheckoutModel.PhoneNumber,
-                OrderDetails = oderDeatails
+                Address = request.Address,
+                Name = request.Name,
+                Email = request.Email,
+                PhoneNumber = request.PhoneNumber,
+                //OrderDetails = oderDeatails
             };
 
             //Todo: Add data into database + send mail
+            var order = new OrderEntity
+            {
+                OrderDate = DateTime.UtcNow,
+                Status = Models.OrderStatus.InProgress,
+                ShipAddress = request.Address,
+                ShipPhoneNumber = request.PhoneNumber,
+                ShipEmail = request.Email,
+                ShipName = request.Name,
+                CreationTime = DateTime.UtcNow
+            };
+
+            await dbContext.Orders.AddAsync(order);
+            await dbContext.SaveChangesAsync();
+
+            foreach (var item in checkoutVm.CartItems)
+            {
+                var detail = new OrderDetailEntity
+                {
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    Price = item.Price,
+                    OrderId = order.Id
+                };
+                await dbContext.AddAsync(detail);
+            }
+            await dbContext.SaveChangesAsync();
 
             TempData["SuccessMsg"] = "Chúc mừng bạn. Đơn hàng của bạn đã được đặt thành công Bộ phận chăm sóc khách hàng sẽ liên lạc trong vòng 2h để xác nhận Chi tiết đơn hàng.";
             return View(checkoutVm);

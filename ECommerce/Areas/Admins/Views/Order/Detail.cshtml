@@ -1,0 +1,88 @@
+﻿@model ECommerce.Models.Order.OrderDetailViewModel
+@{
+    Layout = "~/Areas/Admins/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<section class="cart_content">
+    @if (Model.productOrderViewModels != null && Model.productOrderViewModels.Count > 0)
+    {
+        <section class="cart row">
+            <div class="cart col l-8 m-12 c-12">
+                <h3 class="checkout-title">
+                    Sản phẩm trong đơn hàng
+                </h3>
+                <table class="cart-product-list">
+                    <thead>
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Hinh ảnh</th>
+                            <th>Số lượng</th>
+                            <th>Giá</th>
+                            <th>Tổng cộng</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart_body1">
+                        @foreach (var item in Model.productOrderViewModels)
+                        {
+                            <tr>
+                                <td>@item.ProductName</td>
+                                <td><img width="60" src="~/@item.ProductImage" /></td>
+                                <td>@item.Quantity</td>
+                                <td>@item.Price.ToString("###,###,###") vnđ vnđ</td>
+                                <td>@((item.Price * item.Quantity).ToString("###,###,###")) vnđ</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td colspan="4"></td>
+                            <td class="text-bold">Tổng tiền:@Model.productOrderViewModels.Sum(x => x.Quantity * x.Price).ToString("###,###,###") vnđ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="cart col l-4 m-12 c-12">
+                <h3 class="checkout-title">
+                    Thông tin đặt hàng
+                </h3>
+                <form action="dathang" method="post" enctype="multipart/form-data" id="checkoutForm">
+                    <div class="control-group group-checkout">
+                        <label class="control-label lbl_checkout text-bold" for="">Họ và tên</label>
+                        <span>
+                            @Model.CustomerName
+                        </span>
+                    </div>
+                    <div class="control-group group-checkout">
+                        <label class="control-label lbl_checkout text-bold" for="">Địa chỉ nhận hàng</label>
+                        <span>
+                            @Model.Address
+                        </span>
+                    </div>
+                    <div class="control-group group-checkout">
+                        <label class="control-label lbl_checkout text-bold" for="">Email</label>
+                        <span>
+                            @Model.Email
+                        </span>
+                    </div>
+                    <div class="control-group group-checkout">
+                        <label class="control-label lbl_checkout text-bold" for="">Điện thoại</label>
+                        <span>
+                            @Model.Phone
+                        </span>
+                    </div>
+                    <div class="control-group group-checkout">
+                        <label class="control-label lbl_checkout text-bold" for="">Trạng thái</label>
+                        <span>@Model.Status</span>
+                    </div>
+                    @*<div class="control-group group-checkout">
+                            <div class="controls">
+                                <button type="submit" class="btn btn-checkout">Hoàn tất đặt hàng</button>
+                                <a class="btn btn-continue-shopping" href="/giohang">Chỉnh sửa giỏ hàng</a>
+                            </div>
+                        </div>*@
+                </form>
+            </div>
+        </section>
+    }
+</section>

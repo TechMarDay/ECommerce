@@ -4,6 +4,9 @@
     }*@
 <link href="~/assets/css/productDetail.css" rel="stylesheet" />
 <link href="~/assets/css/responsive.css" rel="stylesheet" />
+<link href="~/assets/css/toast.css" rel="stylesheet" />
+<div id="toast">
+</div>
 <div class="app__container">
     <div class="grid wide">
         <section class="row bread-crumb-detail">
@@ -127,8 +130,8 @@
                                     <button onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN(qty)) result.value++;return false;" class="btn-plus btn-cts" type="button">+</button>
                                 </div>
                                 @*<a class="btn btn-product-buy" href="https://www.facebook.com/gchillbra">
-                    <span class="btn-buy-text">Đặt mua giao hàng tận nơi</span>
-                </a>*@
+                                        <span class="btn-buy-text">Đặt mua giao hàng tận nơi</span>
+                                    </a>*@
                             </form>
                         </div>
 
@@ -140,7 +143,7 @@
 
                         <div class="call-and-payment">
                             Hotline đặt hàng:
-                            <a href="tel:0123456789" title="0123456789">
+                            <a href="tel:0362218619" title="0362218619">
                                 <i class="fa fa-phone-square"></i>
                                 0388653287
                             </a>
@@ -233,5 +236,6 @@
             });
         </script>*@
 
+    <script src="~/assets/Jquery/toast.js"></script>
     <script src="~/assets/Jquery/productDetail.js"></script>
 }

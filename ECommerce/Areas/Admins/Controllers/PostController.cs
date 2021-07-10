@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace ECommerce.Areas.Admins.Controllers
 {
     [Area("Admins")]
+    [Authorize(Roles = "Admin")]
     public class PostController : Controller
     {
         private IWebHostEnvironment hostingEnvironment;

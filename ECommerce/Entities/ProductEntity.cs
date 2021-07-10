@@ -35,5 +35,7 @@ namespace ECommerce.Entities
         public virtual ProductCategoryEntity Category { get; set; }
 
         public virtual ICollection<AttachmentEntity> Attachments { get; set; }
+
+        public virtual List<OrderDetailEntity> OrderDetails { get; set; }
     }   
 }

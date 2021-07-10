@@ -20,6 +20,10 @@ namespace ECommerce.Data
 
         public DbSet<AttachmentEntity> Attachments { get; set; }
 
+        public DbSet<OrderEntity> Orders { get; set; }
+
+        public DbSet<OrderDetailEntity> OrderDetails { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCategoryEntity>(entity =>
@@ -28,9 +32,9 @@ namespace ECommerce.Data
                 entity.Property(e => e.Link).IsRequired();
                 entity.Property(e => e.Type).IsRequired()
                         .HasConversion(
-                        c=> c.ToString(),
+                        c => c.ToString(),
                         c => (ProductCategoryType)Enum.Parse(typeof(ProductCategoryType), c));
-                 });
+            });
 
             modelBuilder.Entity<AttachmentEntity>(entity =>
             {
@@ -40,6 +44,31 @@ namespace ECommerce.Data
                         .HasConversion(
                         c => c.ToString(),
                         c => (AttachmentRefEnum.RefId)Enum.Parse(typeof(AttachmentRefEnum.RefId), c));
+            });
+
+            modelBuilder.Entity<OrderEntity>(entity => {
+                entity.Property(o => o.ShipName).IsRequired();
+                entity.Property(o => o.ShipPhoneNumber).IsRequired();
+                entity.Property(o => o.ShipAddress).IsRequired();
+                entity.Property(e => e.Status).IsRequired()
+                        .HasConversion(
+                        c => c.ToString(),
+                        c => (OrderStatus)Enum.Parse(typeof(OrderStatus), c));
+
+            });
+
+            modelBuilder.Entity<OrderDetailEntity>(entity => {
+                entity.Property(e => e.ProductId).IsRequired();
+                entity.Property(e => e.OrderId).IsRequired();
+                entity.Property(e => e.Quantity).IsRequired();
+                entity.HasOne(od => od.Product)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(od => od.ProductId);
+                entity.HasOne(od => od.Order)
+                .WithMany(o => o.OrderDetails)
+                .HasForeignKey(od => od.OrderId);
+                entity.Property(e => e.Price).IsRequired()
+        .HasColumnType("decimal(18,2)");
             });
 
             modelBuilder.Entity<ProductEntity>(entity =>

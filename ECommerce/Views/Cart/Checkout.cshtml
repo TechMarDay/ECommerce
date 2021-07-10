@@ -26,86 +26,90 @@
                 else
 
                 {
-            <section class="cart row">
-                <div class="cart col l-6 m-12 c-12">
-                    <h3 class="checkout-title">
-                        Sản phẩm trong đơn hàng
-                    </h3>
-                    @* Link contiune shopping *@
+                    <section class="cart row">
+                        <div class="cart col l-6 m-12 c-12">
+                            <h3 class="checkout-title">
+                                Sản phẩm trong đơn hàng
+                            </h3>
+                            @* Link contiune shopping *@
 
 
-                    @* List product *@
-                    <table class="cart-product-list">
-                        <thead>
-                        <thead>
-                            <tr>
-                                <th>Sản phẩm</th>
-                                <th>Hinh ảnh</th>
-                                <th>Số lượng</th>
-                                <th>Giá</th>
-                                <th>Tổng cộng</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cart_body1">
-                            @foreach (var item in Model.CartItems)
-                            {
-                                <tr>
-                                    <td>@item.Name</td>
-                                    <td><img width="60" src="~/@item.Image" /></td>
-                                    <td>@item.Quantity</td>
-                                    <td>@item.Price.ToString("###,###,###") vnđ vnđ</td>
-                                    <td>@((item.Price * item.Quantity).ToString("###,###,###")) vnđ</td>
-                                </tr>
-                            }
-                            <tr>
-                                <td colspan="4"></td>
-                                <td>Tổng tiền:@Model.CartItems.Sum(x => x.Quantity * x.Price).ToString("###,###,###") vnđ</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="cart col l-6 m-12 c-12">
-                    <h3 class="checkout-title">
-                        Thông tin đặt hàng
-                    </h3>
-                    <form  action="dathang" method="post">
-                        <div class="control-group group-checkout">
-                            <label class="control-label lbl_checkout" for="">Họ và tên <span class="mandatory">*</span></label>
-                            <div class="controls">
-                                <input type="text" class="input_common" id="inputCountry" asp-for="CheckoutModel.Name" placeholder="Họ và tên đầy đủ" />
-                            </div>
+                            @* List product *@
+                            <table class="cart-product-list">
+                                <thead>
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Hinh ảnh</th>
+                                        <th>Số lượng</th>
+                                        <th>Giá</th>
+                                        <th>Tổng cộng</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="cart_body1">
+                                    @foreach (var item in Model.CartItems)
+                                    {
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td><img width="60" src="~/@item.Image" /></td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Price.ToString("###,###,###") vnđ vnđ</td>
+                                            <td>@((item.Price * item.Quantity).ToString("###,###,###")) vnđ</td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="4"></td>
+                                        <td>Tổng tiền:@Model.CartItems.Sum(x => x.Quantity * x.Price).ToString("###,###,###") vnđ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="control-group group-checkout">
-                            <label class="control-label lbl_checkout" for="">Địa chỉ nhận hàng <span class="mandatory">*</span></label>
-                            <div class="controls">
-                                <input type="text" class="input_common" id="inputCountry" asp-for="CheckoutModel.Address" placeholder="Địa chỉ nhận hàng" />
-                            </div>
+                        <div class="cart col l-6 m-12 c-12">
+                            <h3 class="checkout-title">
+                                Thông tin đặt hàng
+                            </h3>
+                            <form action="dathang" method="post" enctype="multipart/form-data" id="checkoutForm">
+                                <div class="control-group group-checkout">
+                                    <label class="control-label lbl_checkout" for="">Họ và tên <span class="mandatory">*</span></label>
+                                    <div class="controls">
+                                        <input type="text" class="input_common" id="fulllName" name="Name" asp-for="Name" placeholder="Họ và tên đầy đủ" />
+                                    </div>
+                                    <span class="form-message"></span>
+                                </div>
+                                <div class="control-group group-checkout">
+                                    <label class="control-label lbl_checkout" for="">Địa chỉ nhận hàng <span class="mandatory">*</span></label>
+                                    <div class="controls">
+                                        <input type="text" class="input_common" id="checkoutAddress" name="Address" asp-for="Address" placeholder="Địa chỉ nhận hàng" />
+                                    </div>
+                                    <span class="form-message"></span>
+                                </div>
+                                <div class="control-group group-checkout">
+                                    <label class="control-label lbl_checkout" for="">Email<span class="mandatory">*</span></label>
+                                    <div class="controls">
+                                        <input type="text" class="input_common" id="checkoutEmail" name="Email" asp-for="Email" placeholder="Email" />
+                                    </div>
+                                    <span class="form-message"></span>
+                                </div>
+                                <div class="control-group group-checkout">
+                                    <label class="control-label lbl_checkout" for="">Điện thoại <span class="mandatory">*</span></label>
+                                    <div class="controls">
+                                        <input type="text" class="input_common" id="PhoneNumber" name="PhoneNumber" asp-for="PhoneNumber" placeholder="Điện thoại" />
+                                    </div>
+                                    <span class="form-message"></span>
+                                </div>
+                                <div class="control-group group-checkout">
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-checkout">Hoàn tất đặt hàng</button>
+                                        <a class="btn btn-continue-shopping" href="/giohang">Chỉnh sửa giỏ hàng</a>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                        <div class="control-group group-checkout">
-                            <label class="control-label lbl_checkout" for="">Email</label>
-                            <div class="controls">
-                                <input type="text" class="input_common" id="inputCountry" asp-for="CheckoutModel.Email" placeholder="Email" />
-                            </div>
-                        </div>
-                        <div class="control-group group-checkout">
-                            <label class="control-label lbl_checkout" for="">Điện thoại <span class="mandatory">*</span></label>
-                            <div class="controls">
-                                <input type="text" class="input_common" id="inputCountry" asp-for="CheckoutModel.PhoneNumber" placeholder="Điện thoại" />
-                            </div>
-                        </div>
-                        <div class="control-group group-checkout">
-                            <div class="controls">
-                                <button type="submit" class="btn btn-checkout">Hoàn tất đặt hàng</button>
-                                <a class="btn btn-continue-shopping" href="/giohang">Chỉnh sửa giỏ hàng</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </section>
+                    </section>
 
                     @*<section class="cart row">
-                        <a href="/">Continue shopping ve trang chu</a>
-                    </section>*@
+                            <a href="/">Continue shopping ve trang chu</a>
+                        </section>*@
                 }
             </section>
 
@@ -120,3 +124,19 @@
         </div>
     </div>
 </div>
+
+<script src="~/assets/Jquery/validator.js"></script>
+<script>
+    Validator({
+        form: '#checkoutForm',
+        formGroupSelector: '.group-checkout',
+        errorSelector: '.form-message',
+        rules: [
+            Validator.isRequired('#fulllName', 'Vui lòng nhập tên đầy đủ của bạn'),
+            Validator.isRequired('#checkoutAddress', 'Vui lòng nhập địa chỉ giao hàng'),
+            Validator.isRequired('#checkoutEmail', 'Vui lòng nhập email'),
+            Validator.isEmail('#checkoutEmail'),
+            Validator.isRequired('#PhoneNumber')
+        ]
+    });
+</script>

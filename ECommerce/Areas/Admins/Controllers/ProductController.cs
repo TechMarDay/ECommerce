@@ -4,6 +4,7 @@ using ECommerce.Entities;
 using ECommerce.Extension;
 using ECommerce.Models.Product;
 using ECommerce.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ namespace ECommerce.Areas.Admins.Controllers
 {
     [Area("Admins")]
     [Route("admins/product")]
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         private readonly EcommerceDbContext dbContext;
